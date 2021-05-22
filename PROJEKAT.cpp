@@ -1,4 +1,9 @@
 #include<iostream>
+#include<cmath>
+#include<algorithm>
+#include<stdlib.h>
+#include<ctime>
+#include<iomanip>
 using namespace std;
 
 int main (){
