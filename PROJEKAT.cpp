@@ -14,6 +14,10 @@ for(int i=0;i<n;i++){
 cout << i+1 << ".clan:" ;
 cin >> niz[i];
 }
+for(int i=0;i<n;i++){
+cout << i+1 << ".clan:" ;
+cin >> niz[i];
+}
 
 
 return 0;
