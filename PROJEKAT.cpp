@@ -14,7 +14,7 @@ struct mobitel{
     string nazivMobitela;
     string modelMobitela;
 
-}
+};
 /*
 int unosMobitela() {
 	int izbor;
@@ -57,9 +57,9 @@ void login(){
 
 
 void registerpassword(){
-    cout << "Please enter the password:" << endl;
+    cout << "Ukucajte vasu sifru:" << endl;
     cin >> password;
-    cout << "Please renter your password:" << endl;
+    cout << "Ukucajte ponovo vasu sifru:" << endl;
     cin >> password2;
     if (password == password2){
         cin.clear();
@@ -68,15 +68,15 @@ void registerpassword(){
         exit(1);
     }
     else;{
-        cout << "Sorry invalid" << endl;
+        cout << "Neispravna sifra" << endl;
         registerpassword();
     }}
 
 
 void registerme(){
-    cout << "Please enter your username: " << endl;
+    cout << "Molimo ukucajte vase korisnicko ime: " << endl;
     getline(cin, username);
-    cout << "\nUsername -  \""<< username << "\"\nConfirm? \n\n[1] Yes\n[2] No" << endl;
+    cout << "\nKorisnicko ime -  \""<< username << "\"\nPotvrditi? \n\n[1] Da\n[2] Ne" << endl;
     cin >> confirmation;
     if (confirmation == 1){
         registerpassword();
@@ -93,7 +93,7 @@ void registerme(){
 void exit(){
     exit(0);}
 
-void mainmenu(){ cout << "Hello, Would you like to log in or register\n[1] Login\n[2] Register\n[3] Exit" <<endl; cin >> choice; do{
+void mainmenu(){ cout << "Hello, Would you like to log in or register\n\t[1] Login\n\t[2] Register\n\t[3] Exit" <<endl; cin >> choice; do{
     cinfail = cin.fail();
     cin.clear();
     cin.ignore(10000,'\n');
@@ -114,11 +114,9 @@ void mainmenu(){ cout << "Hello, Would you like to log in or register\n[1] Login
 main(){ 
 mainmenu(); 
 }
-int main (){
 
 
 
 
 
-return 0;
-}
+
