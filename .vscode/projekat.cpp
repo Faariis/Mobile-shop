@@ -24,6 +24,7 @@ struct mobitel{
     int godinaProizvodnje;
     int RAM;
     int ROM;
+   
 };
 void registracija(string *username,string *pasword,int j){
 	cout<<"Unesite username:";
@@ -96,6 +97,7 @@ mobitel unosMobitela(){
 int adminMeni(){
    	system("cls");
 	int izbor;
+	cout<<"--------------ADMIN MENU-------------------------\n";
 	do{
 		cout << "1. Dodati novi artikal(mobitel): " << endl;
 		cout << "2. Provjera stanja artikala: " << endl;
@@ -143,10 +145,14 @@ do{
 		cin.ignore();
 	switch(izbor){
 		case 1:
+			system("cls");
+			cout<<"------------------REGISTRACIJA----------------"<<endl;
 			registracija(username,pasword,a);
 			a++;
 			break;	
 		case 2:
+			system("cls");
+			cout<<"-----------PRIJAVA-----------------"<<endl;
 			login(lusername,lpasword,b);
 			b++;
 			if(adm(lusername,lpasword,b,novi)){
