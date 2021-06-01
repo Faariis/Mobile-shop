@@ -252,7 +252,7 @@ void korisnickiMenu(){
 	system("cls");
 	cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
 }
-
+/*--------------------------------------------------MAIN FUNKCIJA--------------------------------------------------*/
 int main (){
     mobitel user;
 	int izbor,a=0,b=0,br=0;
