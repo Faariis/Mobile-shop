@@ -12,7 +12,7 @@
 #include <algorithm>
 
 using namespace std;
-
+////////////////////////////////////
 enum nazivMobitela {Samsung=1, iPhone, Huawei, Xiaomi,};
 struct Admin{
 	string username;
