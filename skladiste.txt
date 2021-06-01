@@ -11,3 +11,4 @@ Xiaomi        Note-10   2020                 6         256       1           349
 Samsung       S20       2020                 8         1024      2           2599     
 Samsung       S10       2019                 6         512       4           750          
 Huawei        P20       2018                 2         16        10          150          
+iPhone        11        2019                 3         1024      5           550          
