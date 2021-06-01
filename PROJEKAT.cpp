@@ -12,11 +12,16 @@
 #include <algorithm>
 
 using namespace std;
-////////////////////////////////////
+
 enum nazivMobitela {Samsung=1, iPhone, Huawei, Xiaomi,};
 struct Admin{
 	string username;
 	string sifra;
+};
+struct kupac{
+    string imePrezime;
+    string adresa;
+    int brTel;
 };
 struct mobitel{
     nazivMobitela naziv;
@@ -76,12 +81,13 @@ struct mobitel{
 	do{
 		cout << "1. Dodati novi artikal(mobitel): " << endl;
 		cout << "2. Provjera stanja artikala: " << endl;
-		cout << "3. Prodaj artikal: " << endl;
+        cout << "3. Provjeri narudzbe: " << endl;
+		cout << "4. Prodaj artikal: " << endl;
         cout <<"0. Kraj: "<<endl;
 		cout << "Unesite izbor: ";
 		cin >> izbor;
 		cin.ignore();
-	}while(izbor<0 || izbor>3); 
+	}while(izbor<0 || izbor>4); 
 
     switch(izbor){
         case 1:
@@ -106,7 +112,7 @@ struct mobitel{
         some.close();
         ofstream open("skladiste.txt");
         open<<"--------------------------------------------------------------------------------------------------------"<<endl;
-        open<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Količina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        open<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         open<<"--------------------------------------------------------------------------------------------------------"<<endl;
         open.close();
     }else some.close();
@@ -204,10 +210,51 @@ struct mobitel{
         }while(izbor<0 || izbor>3);
 
         switch (izbor){
+            case 1:
+            sortirajRAM();
             case 0:
             ProvjeraStanjaMeni();
         } 
     
+    }
+    //sortiranje po RAM-u 
+    void sortirajRAM (){
+        ifstream skladiste("skladiste.txt");
+        vector<string> telefoni;
+        vector<int> ram;
+        int a;
+        string temp;
+        if(skladiste.fail()){
+            cout<<"Nemoguce pristupiti bazi podataka!!!";
+        }else{
+
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        while(true){
+            getline(skladiste, temp);
+            if(skladiste.eof()) break;
+            telefoni.push_back(temp);
+            a=temp[45]-'0';
+            ram.push_back(a);
+        }
+        for(int i=0; i<telefoni.size(); i++){
+            for(int j=i; j<telefoni.size(); j++){
+                if(ram[i]>ram[j]) {
+                    swap(ram[i], ram[j]);
+                    swap(telefoni[i], telefoni[j]);
+                }
+            }
+        }        
+        for(int i=0; i<telefoni.size(); i++){
+            cout<<telefoni[i]<<endl;
+        }
+        skladiste.close();
+        system("PAUSE");
+        }
     }
 
 };
