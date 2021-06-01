@@ -327,7 +327,7 @@ bool reg(string *regU,string *regP,string *luser,string *lpas,int i,int j){
             }
             unos.close();
         }
-        //menu koji izbacuje nakon što odaberemo provjera stanja u admin menu
+        //menu koji izbacuje nakon sto odaberemo provjera stanja u admin menu
         void ProvjeraStanjaMeni(){
             system("cls");
             int izbor;
