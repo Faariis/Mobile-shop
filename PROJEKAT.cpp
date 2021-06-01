@@ -105,9 +105,9 @@ struct mobitel{
     if(some.eof()){
         some.close();
         ofstream open("skladiste.txt");
-        open<<"-------------------------------------------------------------------------"<<endl;
-        open<<setw(5)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(10)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<left<<setw(10)<<"ROM(GB):"<<left<<setw(10)<<"Količina:"<<left<<setw(10)<<"Cijena(KM):"<<endl;
-        open<<"-------------------------------------------------------------------------"<<endl;
+        open<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        open<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Količina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        open<<"--------------------------------------------------------------------------------------------------------"<<endl;
         open.close();
     }else some.close();
     
@@ -127,30 +127,30 @@ struct mobitel{
                     cin>>izbor;
                 }while(izbor<1 || izbor>4);
             naziv=(nazivMobitela)izbor;
-                unos<<setw(5)<<vratiMob();
+                unos<<left<<setw(14)<<vratiMob();
                 cin.ignore();
             cout<<"Unesite model mobitela: ";
                 getline(cin, modelMobitela);
-                unos<<" "<<modelMobitela;
+                unos<<setw(10)<<modelMobitela;
             cout<<"Unesite godinu proizvodnje: ";
                 cin>>godinaProizvodnje;
-                unos<<" "<<godinaProizvodnje;
+                unos<<setw(21)<<godinaProizvodnje;
             cout<<"Unesite kolicinu RAM memorije (GB): ";
                 cin>>RAM;
-                unos<<" "<<RAM<<"GB";
+                unos<<setw(10)<<RAM;
                 int izbor2;
                 do{
                     cout<<"Unesite kolicinu ROM memorije (GB): "<<endl;
                     cout<<"(1)-8 GB, (2)-16 GB, (3)-32 GB, (4)-64 GB, (5)-128 GB, (6)-264 GB, (7)-512 GB, (8)-1024 GB"<<endl;
                     cin>>izbor2;
                 }while(izbor2<1 || izbor2 >8);    
-                unos<<" "<<vratiROM(izbor2)<<"GB";
+                unos<<setw(10)<<vratiROM(izbor2);
             cout<<"Unesite kolicinu:";
                 cin>>kolicina;
-                unos<<kolicina;
+                unos<<setw(12)<<kolicina;
             cout<<"Unesite cijenu:";
                 cin>>cijena;
-                unos<<cijena;
+                unos<<setw(13)<<cijena;
                 unos<<endl;
                 unos.close();
                 int x;
@@ -254,7 +254,9 @@ void korisnickiMenu(){
 }
 /*--------------------------------------------------MAIN FUNKCIJA--------------------------------------------------*/
 int main (){
+    
     mobitel user;
+    /*
 	int izbor,a=0,b=0,br=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
@@ -300,6 +302,7 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
-
+*/
+user.adminMeni();
 return 0;
 }
