@@ -200,22 +200,69 @@ struct mobitel{
         system("cls");
         int izbor;
         do{
-            cout << "1. Sortirano po RAM-u: " << endl;
-            cout << "2. Sortirano po ROM-u: " << endl;
-            cout << "3. Sortirano po cijeni: " << endl;
+            cout << "1. Sortirano po proizvodjacu: " << endl;
+            cout << "2. Sortirano po RAM-u: " << endl;
+            cout << "3. Sortirano po ROM-u: " << endl;
+            cout << "4. Sortirano po cijeni: " << endl;
             cout << "0. Nazad: " << endl;
             cout << "Unesite izbor: ";
             cin >> izbor;
             cin.ignore();
-        }while(izbor<0 || izbor>3);
+        }while(izbor<0 || izbor>4);
 
         switch (izbor){
             case 1:
+            sortirajPROIZVODJAC();
+            case 2:
             sortirajRAM();
+            case 3:
+            sortirajROM();
+            case 4:
+            sortirajCIJENU();
             case 0:
             ProvjeraStanjaMeni();
         } 
     
+    }
+    //sortiranje po proizvodjacu
+    void sortirajPROIZVODJAC(){
+        ifstream skladiste("skladiste.txt");
+        vector<string> telefoni;
+        vector<int> mob;
+        int a;
+        string temp;
+        if(skladiste.fail()){
+            cout<<"Nemoguce pristupiti bazi podataka!!!";
+        }else{
+
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        while(true){
+            getline(skladiste, temp);
+            if(skladiste.eof()) break;
+            telefoni.push_back(temp);
+            skladiste>>a;
+            cout<<a<<" ---------"<<endl;
+            mob.push_back(a);
+        }
+        for(int i=0; i<telefoni.size(); i++){
+            for(int j=i; j<telefoni.size(); j++){
+                if(mob[i]>mob[j]) {
+                    swap(mob[i], mob[j]);
+                    swap(telefoni[i], telefoni[j]);
+                }
+            }
+        }        
+        for(int i=0; i<telefoni.size(); i++){
+            cout<<telefoni[i]<<endl;
+        }
+        skladiste.close();
+        system("PAUSE");
+        }
     }
     //sortiranje po RAM-u 
     void sortirajRAM (){
@@ -256,6 +303,102 @@ struct mobitel{
         system("PAUSE");
         }
     }
+    //Sortiranje po ROM-u
+    void sortirajROM (){
+        ifstream skladiste("skladiste.txt");
+        vector<string> telefoni;
+        vector<int> rom;
+        int a,b,c,d,x;
+        string temp;
+        if(skladiste.fail()){
+            cout<<"Nemoguce pristupiti bazi podataka!!!";
+        }else{
+
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        while(true){
+            getline(skladiste, temp);
+            if(skladiste.eof()) break;
+            telefoni.push_back(temp);
+            a=temp[55]-'0';
+            b=temp[56]-'0';
+            c=temp[57]-'0';
+            d=temp[58]-'0';
+            //sortiranje iz datoteke jer ROM moze imati 1,2,3 ili 4 cifre
+            if( a>-1 && b>-1 && c>-1 && d>-1) x=a*1000+b*100+c+10+d;
+            else if( a>-1 && b>-1 && c>-1 && d<-1) x=a*100+b*10+c;
+            else if( a>-1 && b>-1 && c<-1 && d<-1) x=a*10+b;
+            else if( a>-1 && b<-1 && c<-1 && d<-1) x=a;
+            rom.push_back(x);
+        }
+        for(int i=0; i<telefoni.size(); i++){
+            for(int j=i; j<telefoni.size(); j++){
+                if(rom[i]>rom[j]) {
+                    swap(rom[i], rom[j]);
+                    swap(telefoni[i], telefoni[j]);
+                }
+            }
+        }        
+        for(int i=0; i<telefoni.size(); i++){
+            cout<<telefoni[i]<<endl;
+        }
+        skladiste.close();
+        system("PAUSE");
+        }
+    }
+
+    //SORTIRANJE PO CIJENI
+    void sortirajCIJENU (){
+        ifstream skladiste("skladiste.txt");
+        vector<string> telefoni;
+        vector<int> cijena;
+        int a,b,c,d,x;
+        string temp;
+        if(skladiste.fail()){
+            cout<<"Nemoguce pristupiti bazi podataka!!!";
+        }else{
+
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        while(true){
+            getline(skladiste, temp);
+            if(skladiste.eof()) break;
+            telefoni.push_back(temp);
+            a=temp[77]-'0';
+            b=temp[78]-'0';
+            c=temp[79]-'0';
+            d=temp[80]-'0';
+            //sortiranje iz datoteke jer cijena moze imati 1,2,3 ili 4 cifre
+            if( a>-1 && b>-1 && c>-1 && d>-1) x=a*1000+b*100+c+10+d;
+            else if( a>-1 && b>-1 && c>-1 && d<-1) x=a*100+b*10+c;
+            else if( a>-1 && b>-1 && c<-1 && d<-1) x=a*10+b;
+            else if( a>-1 && b<-1 && c<-1 && d<-1) x=a;
+            cijena.push_back(x);
+        }
+        for(int i=0; i<telefoni.size(); i++){
+            for(int j=i; j<telefoni.size(); j++){
+                if(cijena[i]>cijena[j]) {
+                    swap(cijena[i], cijena[j]);
+                    swap(telefoni[i], telefoni[j]);
+                }
+            }
+        }        
+        for(int i=0; i<telefoni.size(); i++){
+            cout<<telefoni[i]<<endl;
+        }
+        skladiste.close();
+        system("PAUSE");
+        }
+    }
+    
 
 };
 void registracija(string *username,string *pasword,int j){
