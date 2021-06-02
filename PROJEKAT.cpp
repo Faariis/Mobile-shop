@@ -468,7 +468,7 @@ void korisnickiMenu(){
 int main (){
     
     mobitel user;
-    /*
+    
 	int izbor,a=0,b=0,br=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
@@ -514,7 +514,6 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
-*/
-user.adminMeni();
+
 return 0;
 }
