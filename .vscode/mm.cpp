@@ -65,16 +65,46 @@ struct mobitel{
 
 	    }
     }
-    //Login Menu-otvara ga na pocetku programa
-    void loginMeni(){
-	system("cls");
-        cout<<"\t\tDobrodosli u Mobi-SHOP"<<endl;
-		cout <<"\n:::LOGIN / REGISTER:::"<<endl;
-		cout << "1. Registracija usera " << endl;
-		cout << "2. Login " << endl;
-		cout << "0. Napustiti sistem " << endl;
+    /*-------------------LOGIN MENU (otvara ga na pocetku programa)-----------------*/
+   void loginMeni(){
+//LOGIN MENI
+	system("cls"); 
+		//==========================================================================
+		for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+		cout << "\t\t\t ";for(int i=1;i<=25;i++){cout << "_";};cout << endl;
+		cout << "\t\t\t |                       |" << endl;
+        cout << "\t\t\t |Dobrodosli u Mobi-SHOP!|" << endl;
+        cout << "\t\t\t |_______________________|\n\n";
+        for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+        //==========================================================================
+for(int i=1;i<=80;i++){if(i<80){cout << "_";}else if(i==80){cout << endl;}}
+		cout <<"\n\t\t\t  :::::LOGIN / REGISTER:::::"<<endl;
+		for(int i=1;i<=80;i++){if(i<80){cout << "_";}else if(i==80){cout << endl;}}
+cout << "\t\t\t ________________________" << endl;
+cout << "\t\t\t/  __________o__________ \\ " << endl;
+cout << "\t\t\t| |__________________==| |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |  1. Registracija   | |" << endl;
+cout << "\t\t\t| |  2. Login          | |" << endl;
+cout << "\t\t\t| |  0. Dovidjenja     | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |____________________| |" << endl;
+cout << "\t\t\t| |____________________| |" << endl;
+cout << "\t\t\t|    <       o       >   |" << endl;
+cout << "\t\t\t\\________________________/" << endl;
     }
-    //Admin menu-otvara ga nakon što se prijavimo kao admini
+    
+    /*-------------------ADMIN MENU (otvara ga nakon Å¡to se prijavimo kao admini)-----------------*/
     void adminMeni(){
    	system("cls");
 	int izbor;
@@ -91,6 +121,8 @@ struct mobitel{
 	}while(izbor<0 || izbor>5); 
 
     switch(izbor){
+    	case 0:
+        loginMeni();
         case 1:
         system("cls");
         unosMobitela();
@@ -99,20 +131,18 @@ struct mobitel{
         ProvjeraStanjaMeni();
         case 3:
         system("cls");
-        case 0:
-        loginMeni();
-        	case 5:
-        		system("cls");
-				int budzet=50000;
-				cout<<"Budzet za mjesec juni 2021: "<<budzet<<endl;
-				cout<<"Potroseno na nabavke: "<<stanjeKase("skladiste.txt")<<endl;
-				//ovdje dodati u budzet i pare od prodaje kad bude 
-				cout<<"Ukupan rashod i prihod: "<< budzet-stanjeKase("skladiste.txt")<<endl;
+       	case 5:
+        	system("cls");
+			int budzet=50000;
+			cout<<"Budzet za mjesec juni 2021: "<<budzet<<endl;
+			cout<<"Potroseno na nabavke: "<<stanjeKase("skladiste.txt")<<endl;
+			//ovdje dodati u budzet i pare od prodaje kad bude 
+			cout<<"Ukupan rashod i prihod: "<< budzet-stanjeKase("skladiste.txt")<<endl;
                 
 
     }
 }
-    //funkcija za unos mobitela u sklopu Admin menua
+     /*-------------------FUNKCIJA ZA UNOS MOBITELA U SKLOPU ADMIN MENUA-----------------*/
     void unosMobitela(){
     ifstream some("skladiste.txt");
     string temp;
@@ -183,7 +213,8 @@ struct mobitel{
             }
             unos.close();
         }
-        //menu koji izbacuje nakon sto odaberemo provjera stanja u admin menu
+
+         /*-------------------PROVJERA STANJA MENU(nalazi se u sklopu admin menua)-----------------*/
         void ProvjeraStanjaMeni(){
             system("cls");
             int izbor;
@@ -194,19 +225,18 @@ struct mobitel{
                 cout << "Unesite izbor: ";
                 cin >> izbor;
                 cin.ignore();
-            }while(izbor<0 || izbor>3);
+            }while(izbor<0 || izbor>2);
             switch (izbor){
-            	 case 0:
-                adminMeni();
                 case 1:
                 system("cls");
                 IspisiSortirano();
-                case 2:
-                	break;
+                case 0:
+                adminMeni();
             } 
         
         }
-        //menu koji izbacuje nakon sto izaberemo ispis svih sortiranih artikala
+     
+         /*-------------------ISPISI SORTIRANO MENU (otvara ga nakon sto odaberemo Ispisi sve artikle (sortirano) u ADMIN menu)-----------------*/
         void IspisiSortirano(){
         system("cls");
         int izbor;
@@ -235,13 +265,12 @@ struct mobitel{
         } 
     
     }
-    //sortiranje po proizvodjacu
+     /*-------------------SORTIRANJE PO PROIZVODJACU-----------------*/
     void sortirajPROIZVODJAC(){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
-        vector<int> mob;
-        int a;
-        string temp;
+        vector<string> mob;
+        string temp,a;
         if(skladiste.fail()){
             cout<<"Nemoguce pristupiti bazi podataka!!!";
         }else{
@@ -249,17 +278,34 @@ struct mobitel{
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
         cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        //preskacem prve tri linije i idem do proizvoda
         getline(skladiste, temp);
         getline(skladiste, temp);
         getline(skladiste, temp);
-        while(true){
+        //uzimam liniju po liniju i smjestam u vektor telefoni
+        do{
             getline(skladiste, temp);
-            if(skladiste.eof()) break;
             telefoni.push_back(temp);
+        }while(!skladiste.eof());
+        skladiste.close();
+
+    skladiste .open("skladiste.txt");
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        //uzimam samo prvu rijec (proizvodjac) i smjestam u vektor mob
+        do{
             skladiste>>a;
-            cout<<a<<" ---------"<<endl;
             mob.push_back(a);
-        }
+            skladiste>>a;
+            skladiste>>a;
+            skladiste>>a;
+            skladiste>>a;
+            skladiste>>a;
+            skladiste>>a;
+        }while(!skladiste.eof());
+    skladiste.close();
+        //sortiranje
         for(int i=0; i<telefoni.size(); i++){
             for(int j=i; j<telefoni.size(); j++){
                 if(mob[i]>mob[j]) {
@@ -267,7 +313,8 @@ struct mobitel{
                     swap(telefoni[i], telefoni[j]);
                 }
             }
-        }        
+        }    
+        //ispis    
         for(int i=0; i<telefoni.size(); i++){
             cout<<telefoni[i]<<endl;
         }
@@ -275,7 +322,7 @@ struct mobitel{
         system("PAUSE");
         }
     }
-    //sortiranje po RAM-u 
+    /*-------------------SORTIRANJE PO RAMU-----------------*/ 
     void sortirajRAM (){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
@@ -314,7 +361,7 @@ struct mobitel{
         system("PAUSE");
         }
     }
-    //Sortiranje po ROM-u
+    /*-------------------SORTIRANJE PO ROMU-----------------*/
     void sortirajROM (){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
@@ -335,6 +382,7 @@ struct mobitel{
             getline(skladiste, temp);
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
+            //pretvara string u int
             a=temp[55]-'0';
             b=temp[56]-'0';
             c=temp[57]-'0';
@@ -361,7 +409,7 @@ struct mobitel{
         system("PAUSE");
         }
     }
-    //vraca km potrosen za nabavku telefona
+     //vraca km potrosen za nabavku telefona
     int stanjeKase (string imeFajla){
         ifstream skladiste(imeFajla);
         vector<string> telefoni;
@@ -404,9 +452,8 @@ struct mobitel{
         return u;
         }
     }
-    
 
-    //SORTIRANJE PO CIJENI
+    /*-------------------SORTIRANJE PO CIJENI-----------------*/
     void sortirajCIJENU (){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
@@ -427,6 +474,7 @@ struct mobitel{
             getline(skladiste, temp);
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
+            //pretvara string u int
             a=temp[77]-'0';
             b=temp[78]-'0';
             c=temp[79]-'0';
@@ -497,7 +545,7 @@ void korisnickiMenu(){
 	system("cls");
 	cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
 }
-/*--------------------------------------------------MAIN FUNKCIJA--------------------------------------------------*/
+/*************************************** MAIN FUNKCIJA *********************************************/
 int main (){
     
     mobitel user;
@@ -548,6 +596,5 @@ do{
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
 
-user.adminMeni();
 return 0;
 }
