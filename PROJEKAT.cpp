@@ -113,13 +113,16 @@ cout << "\t\t\t\\________________________/" << endl;
 		cout << "2. Provjera stanja artikala: " << endl;
         cout << "3. Provjeri narudzbe: " << endl;
 		cout << "4. Prodaj artikal: " << endl;
+		cout<<"5. Stanje kase"<<endl;
         cout <<"0. Kraj: "<<endl;
 		cout << "Unesite izbor: ";
 		cin >> izbor;
 		cin.ignore();
-	}while(izbor<0 || izbor>4); 
+	}while(izbor<0 || izbor>5); 
 
     switch(izbor){
+    	case 0:
+        loginMeni();
         case 1:
         system("cls");
         unosMobitela();
@@ -128,8 +131,14 @@ cout << "\t\t\t\\________________________/" << endl;
         ProvjeraStanjaMeni();
         case 3:
         system("cls");
-        case 0:
-        loginMeni();
+       	case 5:
+        	system("cls");
+			int budzet=50000;
+			cout<<"Budzet za mjesec juni 2021: "<<budzet<<" KM."<<endl;
+			cout<<"Potroseno na nabavke: "<<stanjeKase("skladiste.txt")<<" KM."<<endl;
+			//ovdje dodati u budzet i pare od prodaje kad bude 
+			cout<<"Ukupan rashod i prihod: "<< budzet-stanjeKase("skladiste.txt")<< " KM."<<endl;
+                
 
     }
 }
@@ -398,6 +407,49 @@ cout << "\t\t\t\\________________________/" << endl;
         }
         skladiste.close();
         system("PAUSE");
+        }
+    }
+     //vraca km potrosen za nabavku telefona
+    int stanjeKase (string imeFajla){
+        ifstream skladiste(imeFajla);
+        vector<string> telefoni;
+        vector<int> kasa;
+        vector<int> kolicina;
+        int a,b,c,d,x,e,f,y;
+        string temp;
+        if(skladiste.fail()){
+            cout<<"Nemoguce pristupiti bazi podataka!!!";
+        }else{
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        while(true){
+            getline(skladiste, temp);
+            if(skladiste.eof()) break;
+            telefoni.push_back(temp);
+            e=temp[65]-'0';
+            f=temp[66]-'0';
+            a=temp[77]-'0';
+            b=temp[78]-'0';
+            c=temp[79]-'0';
+            d=temp[80]-'0';
+            //sortiranje iz datoteke jer cijena moze imati 1,2,3 ili 4 cifre
+            if( a>-1 && b>-1 && c>-1 && d>-1) x=a*1000+b*100+c+10+d;
+            else if( a>-1 && b>-1 && c>-1 && d<-1) x=a*100+b*10+c;
+            else if( a>-1 && b>-1 && c<-1 && d<-1) x=a*10+b;
+            else if( a>-1 && b<-1 && c<-1 && d<-1) x=a;
+            kasa.push_back(x);
+            //sortiranje iz datoteke jer kolicina moze imati jednu ili 2 cifre
+                if( e>-1 && f>-1) y=e*10+f;
+            else if( e>-1 && f<-1) y=e;
+            kolicina.push_back(y);
+        }
+        int u=0;
+        for(int i=0; i<telefoni.size(); i++){
+            u+=kasa[i]*kolicina[i];
+        }
+        skladiste.close();
+        return u;
         }
     }
 
