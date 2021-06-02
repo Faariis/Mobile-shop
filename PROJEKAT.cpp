@@ -197,7 +197,7 @@ struct mobitel{
             } 
         
         }
-        //menu koji izbacuje nakon sto izaberemo ispis svih sortiranih artikala
+     
          /*-------------------ISPISI SORTIRANO MENU (otvara ga nakon sto odaberemo Ispisi sve artikle (sortirano) u ADMIN menu)-----------------*/
         void IspisiSortirano(){
         system("cls");
