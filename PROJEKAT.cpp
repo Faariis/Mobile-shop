@@ -65,7 +65,7 @@ struct mobitel{
 
 	    }
     }
-    //Login Menu-otvara ga na pocetku programa
+    /*-------------------LOGIN MENU (otvara ga na pocetku programa)-----------------*/
     void loginMeni(){
 	system("cls");
         cout<<"\t\tDobrodosli u Mobi-SHOP"<<endl;
@@ -74,7 +74,8 @@ struct mobitel{
 		cout << "2. Login " << endl;
 		cout << "0. Napustiti sistem " << endl;
     }
-    //Admin menu-otvara ga nakon što se prijavimo kao admini
+    
+    /*-------------------ADMIN MENU (otvara ga nakon što se prijavimo kao admini)-----------------*/
     void adminMeni(){
    	system("cls");
 	int izbor;
@@ -103,7 +104,7 @@ struct mobitel{
 
     }
 }
-    //funkcija za unos mobitela u sklopu Admin menua
+     /*-------------------FUNKCIJA ZA UNOS MOBITELA U SKLOPU ADMIN MENUA-----------------*/
     void unosMobitela(){
     ifstream some("skladiste.txt");
     string temp;
@@ -174,7 +175,8 @@ struct mobitel{
             }
             unos.close();
         }
-        //menu koji izbacuje nakon sto odaberemo provjera stanja u admin menu
+
+         /*-------------------PROVJERA STANJA MENU(nalazi se u sklopu admin menua)-----------------*/
         void ProvjeraStanjaMeni(){
             system("cls");
             int izbor;
@@ -196,6 +198,7 @@ struct mobitel{
         
         }
         //menu koji izbacuje nakon sto izaberemo ispis svih sortiranih artikala
+         /*-------------------ISPISI SORTIRANO MENU (otvara ga nakon sto odaberemo Ispisi sve artikle (sortirano) u ADMIN menu)-----------------*/
         void IspisiSortirano(){
         system("cls");
         int izbor;
@@ -224,7 +227,7 @@ struct mobitel{
         } 
     
     }
-    //sortiranje po proizvodjacu
+     /*-------------------SORTIRANJE PO PROIZVODJACU-----------------*/
     void sortirajPROIZVODJAC(){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
@@ -237,16 +240,34 @@ struct mobitel{
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
         cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        //preskacem prve tri linije i idem do proizvoda
         getline(skladiste, temp);
         getline(skladiste, temp);
         getline(skladiste, temp);
-        while(true){
+        //uzimam liniju po liniju i smjestam u vektor telefoni
+        do{
             getline(skladiste, temp);
-            if(skladiste.eof()) break;
             telefoni.push_back(temp);
+        }while(!skladiste.eof());
+        skladiste.close();
+
+    skladiste .open("skladiste.txt");
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        //uzimam samo prvu rijec (proizvodjac) i smjestam u vektor mob
+        do{
             skladiste>>a;
             mob.push_back(a);
-        }
+            skladiste>>a;
+            skladiste>>a;
+            skladiste>>a;
+            skladiste>>a;
+            skladiste>>a;
+            skladiste>>a;
+        }while(!skladiste.eof());
+    skladiste.close();
+        //sortiranje
         for(int i=0; i<telefoni.size(); i++){
             for(int j=i; j<telefoni.size(); j++){
                 if(mob[i]>mob[j]) {
@@ -254,7 +275,8 @@ struct mobitel{
                     swap(telefoni[i], telefoni[j]);
                 }
             }
-        }        
+        }    
+        //ispis    
         for(int i=0; i<telefoni.size(); i++){
             cout<<telefoni[i]<<endl;
         }
@@ -262,7 +284,7 @@ struct mobitel{
         system("PAUSE");
         }
     }
-    //sortiranje po RAM-u 
+    /*-------------------SORTIRANJE PO RAMU-----------------*/ 
     void sortirajRAM (){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
@@ -301,7 +323,7 @@ struct mobitel{
         system("PAUSE");
         }
     }
-    //Sortiranje po ROM-u
+    /*-------------------SORTIRANJE PO ROMU-----------------*/
     void sortirajROM (){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
@@ -350,7 +372,7 @@ struct mobitel{
         }
     }
 
-    //SORTIRANJE PO CIJENI
+    /*-------------------SORTIRANJE PO CIJENI-----------------*/
     void sortirajCIJENU (){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
@@ -442,7 +464,7 @@ void korisnickiMenu(){
 	system("cls");
 	cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
 }
-/*--------------------------------------------------MAIN FUNKCIJA--------------------------------------------------*/
+/*************************************** MAIN FUNKCIJA *********************************************/
 int main (){
     
     mobitel user;
