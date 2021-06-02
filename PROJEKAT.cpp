@@ -66,13 +66,42 @@ struct mobitel{
 	    }
     }
     /*-------------------LOGIN MENU (otvara ga na pocetku programa)-----------------*/
-    void loginMeni(){
-	system("cls");
-        cout<<"\t\tDobrodosli u Mobi-SHOP"<<endl;
-		cout <<"\n:::LOGIN / REGISTER:::"<<endl;
-		cout << "1. Registracija usera " << endl;
-		cout << "2. Login " << endl;
-		cout << "0. Napustiti sistem " << endl;
+   void loginMeni(){
+//LOGIN MENI
+	system("cls"); 
+		//==========================================================================
+		for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+		cout << "\t\t\t ";for(int i=1;i<=25;i++){cout << "_";};cout << endl;
+		cout << "\t\t\t |                       |" << endl;
+        cout << "\t\t\t |Dobrodosli u Mobi-SHOP!|" << endl;
+        cout << "\t\t\t |_______________________|\n\n";
+        for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+        //==========================================================================
+for(int i=1;i<=80;i++){if(i<80){cout << "_";}else if(i==80){cout << endl;}}
+		cout <<"\n\t\t\t  :::::LOGIN / REGISTER:::::"<<endl;
+		for(int i=1;i<=80;i++){if(i<80){cout << "_";}else if(i==80){cout << endl;}}
+cout << "\t\t\t ________________________" << endl;
+cout << "\t\t\t/  __________o__________ \\ " << endl;
+cout << "\t\t\t| |__________________==| |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |  1. Registracija   | |" << endl;
+cout << "\t\t\t| |  2. Login          | |" << endl;
+cout << "\t\t\t| |  0. Dovidjenja     | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |                    | |" << endl;
+cout << "\t\t\t| |____________________| |" << endl;
+cout << "\t\t\t| |____________________| |" << endl;
+cout << "\t\t\t|    <       o       >   |" << endl;
+cout << "\t\t\t\\________________________/" << endl;
     }
     
     /*-------------------ADMIN MENU (otvara ga nakon što se prijavimo kao admini)-----------------*/
