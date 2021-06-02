@@ -228,9 +228,8 @@ struct mobitel{
     void sortirajPROIZVODJAC(){
         ifstream skladiste("skladiste.txt");
         vector<string> telefoni;
-        vector<int> mob;
-        int a;
-        string temp;
+        vector<string> mob;
+        string temp,a;
         if(skladiste.fail()){
             cout<<"Nemoguce pristupiti bazi podataka!!!";
         }else{
@@ -246,7 +245,6 @@ struct mobitel{
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
             skladiste>>a;
-            cout<<a<<" ---------"<<endl;
             mob.push_back(a);
         }
         for(int i=0; i<telefoni.size(); i++){
@@ -324,6 +322,7 @@ struct mobitel{
             getline(skladiste, temp);
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
+            //pretvara string u int
             a=temp[55]-'0';
             b=temp[56]-'0';
             c=temp[57]-'0';
@@ -372,6 +371,7 @@ struct mobitel{
             getline(skladiste, temp);
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
+            //pretvara string u int
             a=temp[77]-'0';
             b=temp[78]-'0';
             c=temp[79]-'0';
