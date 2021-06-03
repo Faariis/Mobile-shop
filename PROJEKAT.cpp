@@ -12,7 +12,6 @@
 #include <algorithm>
 
 using namespace std;
-int ID=1;//redni brojevi telefona
 enum nazivMobitela {Samsung=1, iPhone, Huawei, Xiaomi,};
 struct Admin{
 	string username;
@@ -146,6 +145,7 @@ cout << "\t\t\t\\________________________/" << endl;
     void unosMobitela(){
     ifstream some("skladiste.txt");
     string temp;
+    int ID=-3;//stavljamo brojac ID na -3 jer preskacemo prve 3 linije iz datoteke
     some>>temp;
     if(some.eof()){
         some.close();
@@ -155,7 +155,15 @@ cout << "\t\t\t\\________________________/" << endl;
         open<<"--------------------------------------------------------------------------------------------------------"<<endl;
         open.close();
     }else some.close();
-    
+    //-------------------------------
+    ifstream unosID("skladiste.txt");
+    string mobi;              
+    do{
+       getline(unosID, mobi);           //ovim omogucujemo da se ID uvijek povecava za 1 prilikom unosenja novog mobitela
+       ID++; 
+    }while(!unosID.eof());
+    unosID.close();
+    //---------------------------------
     ofstream unos("skladiste.txt", ios::app);
     if(unos.fail()){
         cout<<"Nemoguce pristupiti bazi podataka!!!";
