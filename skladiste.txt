@@ -1,14 +1,15 @@
 --------------------------------------------------------------------------------------------------------
-Proizvodjac:  Model:    Godina proizvodnje:  RAM(GB):  ROM(GB):  Količina:  Cijena(KM):  
+ID:   Proizvodjac:  Model:    Godina proizvodnje:  RAM(GB):  ROM(GB):  Kolicina:   Cijena(KM):  
 --------------------------------------------------------------------------------------------------------
-Samsung       A50       2019                 4         128       20          450      
-iPhone        12-pro    2020                 8         512       5           2599         
-Huawei        p30       2018                 4         64        15          399      
-Xiaomi        Redmi-9   2020                 4         32        27          359       
-Huawei        Mate-40   2020                 6         512       10          1500         
-iPhone        X         2019                 4         128       15          589       
-Xiaomi        Note-10   2020                 6         256       1           349       
-Samsung       S20       2020                 8         1024      2           2599     
-Samsung       S10       2019                 6         512       4           750          
-Huawei        P20       2018                 2         16        10          150          
-iPhone        11        2019                 3         1024      5           550          
+0     Samsung       S5        2015                 2         16        5           150          
+0     iPhone        XS        2019                 6         256       4           1200         
+1     Samsung       das       253                  3         32        3           333          
+1     Xiaomi        3         2345                 3         64        4           2424         
+1     Samsung       asd       434                  32        32        33          343          
+1     Xiaomi        sfdf      456                  3         128       3           333          
+1     iPhone        sadsa     4535                 3         32        3           566          
+1     Xiaomi        sdgsg     432                  3         128       3           325          
+1     Samsung       fsdsd     453                  3         128       4           634          
+2     Xiaomi        dfgfd     345                  5         128       5           555          
+3     iPhone        sdfsd     3453                 5         32        867         567          
+1     Huawei        dfhz      345                  4         16        5           5654         
