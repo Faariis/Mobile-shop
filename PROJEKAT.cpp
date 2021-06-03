@@ -265,6 +265,35 @@ cout << "\t\t\t\\________________________/" << endl;
         } 
     
     }
+
+    /*-------------------ISPIS mobitela onim redom kako su uneseni u datoteku(bez sortiranja)-----------------*/ 
+    void IspisMobitela(){
+        ifstream skladiste("skladiste.txt");
+        vector<string> telefoni;
+        int a;
+        string temp;
+        if(skladiste.fail()){
+            cout<<"Nemoguce pristupiti bazi podataka!!!";
+        }else{
+
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        getline(skladiste, temp);
+        while(true){
+            getline(skladiste, temp);
+            if(skladiste.eof()) break;
+            telefoni.push_back(temp);
+        }        
+        for(int i=0; i<telefoni.size(); i++){
+            cout<<telefoni[i]<<endl;
+        }
+        skladiste.close();
+        system("PAUSE");
+        }
+    }
      /*-------------------SORTIRANJE PO PROIZVODJACU-----------------*/
     void sortirajPROIZVODJAC(){
         ifstream skladiste("skladiste.txt");
@@ -343,7 +372,7 @@ cout << "\t\t\t\\________________________/" << endl;
             getline(skladiste, temp);
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
-            a=temp[45]-'0';
+            a=temp[45];
             ram.push_back(a);
         }
         for(int i=0; i<telefoni.size(); i++){
@@ -427,6 +456,7 @@ cout << "\t\t\t\\________________________/" << endl;
             getline(skladiste, temp);
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
+            //-'0' pretvara string u int
             e=temp[65]-'0';
             f=temp[66]-'0';
             a=temp[77]-'0';
@@ -501,6 +531,28 @@ cout << "\t\t\t\\________________________/" << endl;
         system("PAUSE");
         }
     }
+void korisnickiMenu(){
+	system("cls");
+	cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
+	int izbor;
+	do{
+		cout << "1. Pogledajte nasu ponudu mobitela: " << endl;
+		cout << "2. Provjera stanja artikala: " << endl;
+        cout << "3. Provjeri narudzbe: " << endl;
+		cout << "4. Prodaj artikal: " << endl;
+		cout<<"5. Stanje kase"<<endl;
+        cout <<"0. Kraj: "<<endl;
+		cout << "Unesite izbor: ";
+		cin >> izbor;
+		cin.ignore();
+
+        switch(izbor){
+            case 1:
+            IspisMobitela();
+            ProvjeraStanjaMeni();
+        }
+	}while(izbor<0 || izbor>5); 
+}    
     
 
 };
@@ -540,16 +592,11 @@ bool adm(string *luser,string *lpas,int i,Admin *novi ){
 		else	return true;
 }
 
-
-void korisnickiMenu(){
-	system("cls");
-	cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
-}
 /*************************************** MAIN FUNKCIJA *********************************************/
 int main (){
     
     mobitel user;
-    
+    /*
 	int izbor,a=0,b=0,br=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
@@ -567,7 +614,7 @@ int main (){
 do{
 	do{
 		user.loginMeni();
-		cout << "Izbor: ";
+		cout << "\n\t\t\t\tIzbor: ";
 		cin >> izbor;
 		cin.ignore();
 	switch(izbor){
@@ -595,6 +642,7 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
-
+*/
+user.korisnickiMenu();
 return 0;
 }
