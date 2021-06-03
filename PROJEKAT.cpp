@@ -243,7 +243,7 @@ cout << "\t\t\t\\________________________/" << endl;
                 system("cls");
                 IspisiSortirano();
                 case 0:
-
+                
                 adminMeni();
             } 
         
@@ -613,7 +613,7 @@ bool adm(string *luser,string *lpas,int i,Admin *novi ){
 int main (){
     
     mobitel user;
-    /*
+    
 	int izbor,a=0,b=0,br=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
@@ -647,7 +647,7 @@ do{
 				system("pause");
 			}
 			if(reg(username,pasword,lusername,lpasword,b,a)){
-				korisnickiMenu();
+				user.korisnickiMenu();
 				system("pause");
 			}else{
 				cout<<"Pogresan username ili password \n";
@@ -659,7 +659,5 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
-*/
-user.adminMeni();
 return 0;
 }
