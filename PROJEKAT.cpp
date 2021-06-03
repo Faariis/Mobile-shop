@@ -12,7 +12,7 @@
 #include <algorithm>
 
 using namespace std;
-
+int ID=1;//redni brojevi telefona
 enum nazivMobitela {Samsung=1, iPhone, Huawei, Xiaomi,};
 struct Admin{
 	string username;
@@ -151,7 +151,7 @@ cout << "\t\t\t\\________________________/" << endl;
         some.close();
         ofstream open("skladiste.txt");
         open<<"--------------------------------------------------------------------------------------------------------"<<endl;
-        open<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        open<<left<<setw(6)<<"ID:"<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         open<<"--------------------------------------------------------------------------------------------------------"<<endl;
         open.close();
     }else some.close();
@@ -160,6 +160,8 @@ cout << "\t\t\t\\________________________/" << endl;
     if(unos.fail()){
         cout<<"Nemoguce pristupiti bazi podataka!!!";
     }else{
+        unos<<left<<setw(6)<<ID;
+        ID++;
         int izbor;
             cout<<"----------------------"<<endl;
             cout<<"\t1-Samsung"<<endl;
@@ -206,9 +208,11 @@ cout << "\t\t\t\\________________________/" << endl;
                 switch(x){
                     case 0:
                     adminMeni();
+                    system("PAUSE");
                     case 1:
                     system("cls");
                     unosMobitela();
+                    
                 }
             }
             unos.close();
@@ -231,6 +235,7 @@ cout << "\t\t\t\\________________________/" << endl;
                 system("cls");
                 IspisiSortirano();
                 case 0:
+
                 adminMeni();
             } 
         
@@ -277,7 +282,7 @@ cout << "\t\t\t\\________________________/" << endl;
         }else{
 
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
-        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<left<<setw(6)<<"ID:"<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
         getline(skladiste, temp);
         getline(skladiste, temp);
@@ -305,7 +310,7 @@ cout << "\t\t\t\\________________________/" << endl;
         }else{
 
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
-        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<left<<setw(6)<<"ID:"<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
         //preskacem prve tri linije i idem do proizvoda
         getline(skladiste, temp);
@@ -322,8 +327,9 @@ cout << "\t\t\t\\________________________/" << endl;
         getline(skladiste, temp);
         getline(skladiste, temp);
         getline(skladiste, temp);
-        //uzimam samo prvu rijec (proizvodjac) i smjestam u vektor mob
+        //uzimam samo drugu rijec (proizvodjac) i smjestam u vektor mob
         do{
+            skladiste>>a;
             skladiste>>a;
             mob.push_back(a);
             skladiste>>a;
@@ -363,7 +369,7 @@ cout << "\t\t\t\\________________________/" << endl;
         }else{
 
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
-        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<left<<setw(6)<<"ID:"<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
         getline(skladiste, temp);
         getline(skladiste, temp);
@@ -372,7 +378,7 @@ cout << "\t\t\t\\________________________/" << endl;
             getline(skladiste, temp);
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
-            a=temp[45];
+            a=temp[51];
             ram.push_back(a);
         }
         for(int i=0; i<telefoni.size(); i++){
@@ -402,7 +408,7 @@ cout << "\t\t\t\\________________________/" << endl;
         }else{
 
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
-        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<left<<setw(6)<<"ID:"<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
         getline(skladiste, temp);
         getline(skladiste, temp);
@@ -412,10 +418,10 @@ cout << "\t\t\t\\________________________/" << endl;
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
             //pretvara string u int
-            a=temp[55]-'0';
-            b=temp[56]-'0';
-            c=temp[57]-'0';
-            d=temp[58]-'0';
+            a=temp[61]-'0';
+            b=temp[62]-'0';
+            c=temp[63]-'0';
+            d=temp[64]-'0';
             //sortiranje iz datoteke jer ROM moze imati 1,2,3 ili 4 cifre
             if( a>-1 && b>-1 && c>-1 && d>-1) x=a*1000+b*100+c+10+d;
             else if( a>-1 && b>-1 && c>-1 && d<-1) x=a*100+b*10+c;
@@ -457,12 +463,12 @@ cout << "\t\t\t\\________________________/" << endl;
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
             //-'0' pretvara string u int
-            e=temp[65]-'0';
-            f=temp[66]-'0';
-            a=temp[77]-'0';
-            b=temp[78]-'0';
-            c=temp[79]-'0';
-            d=temp[80]-'0';
+            e=temp[71]-'0';
+            f=temp[72]-'0';
+            a=temp[83]-'0';
+            b=temp[84]-'0';
+            c=temp[85]-'0';
+            d=temp[86]-'0';
             //sortiranje iz datoteke jer cijena moze imati 1,2,3 ili 4 cifre
             if( a>-1 && b>-1 && c>-1 && d>-1) x=a*1000+b*100+c+10+d;
             else if( a>-1 && b>-1 && c>-1 && d<-1) x=a*100+b*10+c;
@@ -495,7 +501,7 @@ cout << "\t\t\t\\________________________/" << endl;
         }else{
 
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
-        cout<<left<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
+        cout<<left<<setw(6)<<"ID:"<<setw(14)<<"Proizvodjac:"<<setw(10)<<"Model:"<<setw(21)<<"Godina proizvodnje:"<<setw(10)<<"RAM(GB):"<<setw(10)<<"ROM(GB):"<<setw(12)<<"Kolicina:"<<setw(13)<<"Cijena(KM):"<<endl;
         cout<<"--------------------------------------------------------------------------------------------------------"<<endl;
         getline(skladiste, temp);
         getline(skladiste, temp);
@@ -505,10 +511,10 @@ cout << "\t\t\t\\________________________/" << endl;
             if(skladiste.eof()) break;
             telefoni.push_back(temp);
             //pretvara string u int
-            a=temp[77]-'0';
-            b=temp[78]-'0';
-            c=temp[79]-'0';
-            d=temp[80]-'0';
+            a=temp[83]-'0';
+            b=temp[84]-'0';
+            c=temp[85]-'0';
+            d=temp[86]-'0';
             //sortiranje iz datoteke jer cijena moze imati 1,2,3 ili 4 cifre
             if( a>-1 && b>-1 && c>-1 && d>-1) x=a*1000+b*100+c+10+d;
             else if( a>-1 && b>-1 && c>-1 && d<-1) x=a*100+b*10+c;
@@ -552,6 +558,9 @@ void korisnickiMenu(){
             ProvjeraStanjaMeni();
         }
 	}while(izbor<0 || izbor>5); 
+}
+void kupiArtikal(){
+    
 }    
     
 
@@ -643,6 +652,6 @@ do{
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
 */
-user.korisnickiMenu();
+user.adminMeni();
 return 0;
 }
