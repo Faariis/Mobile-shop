@@ -263,8 +263,10 @@ cout << "\t\t\t\\________________________/" << endl;
             cin>>proizv;
             cout<<"Unesite model mobitela (npr. 12-pro): ";
             cin>>mod;
+            int br1=0;
             for(int i=0;i<br-4;i++){
                 if(strcmp(proizv.c_str(),nizMobitela[i].nazivv.c_str())==0 && strcmp(mod.c_str(),nizMobitela[i].modelMobitela.c_str())==0 && nizMobitela[i].kolicina>0){
+                	br1++;
                     cout<<"\n\tTrazeni artikal je dostupan\n"<<endl;
                     cout<<left<<setw(13)<<"ID: "<<nizMobitela[i].id<<endl;
                     cout<<left<<setw(13)<<"Proizvodjac: "<<nizMobitela[i].nazivv<<endl;
@@ -295,11 +297,15 @@ cout << "\t\t\t\\________________________/" << endl;
                         adminMeni("admin");
                     } 
                 }
-                
-                if(strcmp(proizv.c_str(),nizMobitela[i].nazivv.c_str())==0 && strcmp(mod.c_str(),nizMobitela[i].modelMobitela.c_str())==0 && nizMobitela[i].kolicina<=0){
-                    if(rec=="admin") cout<<"Nema vise na stanju, kontaktirajte dobavljaca!"<<endl;
-                }
-                  if(strcmp(proizv.c_str(),nizMobitela[i].nazivv.c_str())!=0 || strcmp(mod.c_str(),nizMobitela[i].modelMobitela.c_str())!=0 || nizMobitela[i].kolicina<=0){
+                        
+            }
+            
+            if(br1==0){
+                    if(rec=="admin"){
+					 cout<<"Nema vise na stanju, kontaktirajte dobavljaca!"<<endl;
+					 system("pause");
+					 adminMeni("admin");
+            }   
                     if(rec=="korisnik") {
                         cout<<"Nema vise na stanju, molimo pogledajte neki drugi mobitel iz nase raznovrsne ponude! "<<endl;
                         system("PAUSE");
@@ -307,9 +313,8 @@ cout << "\t\t\t\\________________________/" << endl;
                     }
 
                 }
-                    
-            }
-    }
+        }
+    
 
          /*-------------------PROVJERA STANJA MENU(nalazi se u sklopu admin menua)-----------------*/
         void ProvjeraStanjaMeni(string rec){//rec ce biti jednako "admin" ili "korisnik" te u zavisnosti od toga ce se pozivati 
