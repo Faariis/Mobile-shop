@@ -104,8 +104,9 @@ cout << "\t\t\t\\________________________/" << endl;
     }
     
     /*-------------------ADMIN MENU (otvara ga nakon što se prijavimo kao admini)-----------------*/
-    void adminMeni(){
+    void adminMeni(string rec){
    	system("cls");
+   		cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
 	int izbor;
 	do{
 		cout << "1. Dodati novi artikal(mobitel): " << endl;
@@ -127,7 +128,7 @@ cout << "\t\t\t\\________________________/" << endl;
         unosMobitela();
         case 2:
         system("cls");
-        ProvjeraStanjaMeni();
+        ProvjeraStanjaMeni("admin");
         case 3:
         system("cls");
        	case 5:
@@ -215,7 +216,7 @@ cout << "\t\t\t\\________________________/" << endl;
                 }while(x<0 || x>1);
                 switch(x){
                     case 0:
-                    adminMeni();
+                    adminMeni("admin");
                     system("PAUSE");
                     case 1:
                     system("cls");
@@ -227,13 +228,16 @@ cout << "\t\t\t\\________________________/" << endl;
         }
 
          /*-------------------PROVJERA STANJA MENU(nalazi se u sklopu admin menua)-----------------*/
-        void ProvjeraStanjaMeni(){
+        void ProvjeraStanjaMeni(string rec){//rec ce biti jednako "admin" ili "korisnik" te u zavisnosti od toga ce se pozivati 
             system("cls");
             int izbor;
             do{
                 cout << "1. Ispisi sve artikle (sortirano): " << endl;
-                cout << "2. Provjeri mobitel u skladistu : " << endl;
-                cout << "0. Nazad: " << endl;
+                if(rec=="admin"){
+               		 cout << "2. Provjeri mobitel u skladistu : " << endl;
+                }if(rec=="korisnik"){
+                	cout << "2. Pretrazi mobitel: " << endl;
+				}cout << "0. Nazad: " << endl;
                 cout << "Unesite izbor: ";
                 cin >> izbor;
                 cin.ignore();
@@ -241,16 +245,20 @@ cout << "\t\t\t\\________________________/" << endl;
             switch (izbor){
                 case 1:
                 system("cls");
-                IspisiSortirano();
+                if(rec=="admin") IspisiSortirano("admin");
+                if(rec=="korisnik") IspisiSortirano("korisnik");
                 case 0:
-                
-                adminMeni();
-            } 
+				if(rec=="admin"){
+			    	adminMeni("admin");
+            	}if(rec=="korisnik"){
+            		korisnickiMenu("korsinik");
+			}
+		}
         
         }
      
          /*-------------------ISPISI SORTIRANO MENU (otvara ga nakon sto odaberemo Ispisi sve artikle (sortirano) u ADMIN menu)-----------------*/
-        void IspisiSortirano(){
+        void IspisiSortirano(string rec){
         system("cls");
         int izbor;
         do{
@@ -267,14 +275,30 @@ cout << "\t\t\t\\________________________/" << endl;
         switch (izbor){
             case 1:
             sortirajPROIZVODJAC();
+            system("cls");
+               if(rec=="korisnik") IspisiSortirano("korisnik");
+               if(rec=="admin") IspisiSortirano("admin");
             case 2:
             sortirajRAM();
+            system("cls");
+              if(rec=="korisnik") IspisiSortirano("korisnik");
+              if(rec=="admin") IspisiSortirano("admin");
             case 3:
             sortirajROM();
+            system("cls");
+               if(rec=="korisnik") IspisiSortirano("korisnik");
+               if(rec=="admin") IspisiSortirano("admin");
             case 4:
             sortirajCIJENU();
+            system("cls");
+              if(rec=="korisnik") IspisiSortirano("korisnik");
+              if(rec=="admin") IspisiSortirano("admin");
             case 0:
-            ProvjeraStanjaMeni();
+            	if(rec=="admin"){
+		   ProvjeraStanjaMeni("admin");
+        }	if(rec=="korisnik"){
+		   ProvjeraStanjaMeni("korisnik");
+        }
         } 
     
     }
@@ -545,7 +569,7 @@ cout << "\t\t\t\\________________________/" << endl;
         system("PAUSE");
         }
     }
-void korisnickiMenu(){
+void korisnickiMenu(string rec){//rec =="korisnik" ,pogledaj u int mainu
 	system("cls");
 	cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
 	int izbor;
@@ -553,8 +577,7 @@ void korisnickiMenu(){
 		cout << "1. Pogledajte nasu ponudu mobitela: " << endl;
 		cout << "2. Provjera stanja artikala: " << endl;
         cout << "3. Provjeri narudzbe: " << endl;
-		cout << "4. Prodaj artikal: " << endl;
-		cout<<"5. Stanje kase"<<endl;
+		cout<<"4. Stanje kase"<<endl;
         cout <<"0. Kraj: "<<endl;
 		cout << "Unesite izbor: ";
 		cin >> izbor;
@@ -562,15 +585,35 @@ void korisnickiMenu(){
 
         switch(izbor){
             case 1:
-            IspisMobitela();
-            ProvjeraStanjaMeni();
-        }
+	            IspisMobitela();
+	            string iz,i2;
+	            do{
+		            cout<<"Da li te zelite sortirati proizvode(DA/NE)"<<endl;
+		            cin>>iz;
+	            }while(iz!="DA" && iz!="NE" && iz!="da" && iz!="ne" );
+	            if(iz=="DA" || iz=="da"){
+					ProvjeraStanjaMeni("korisnik");//ide u provjeruStanjaMeni namjenjena korsiniku odnosnoondje gdje ima if(rec=="korisnik")u navedenoj funkciji
+	    		} do{
+					if(iz=="NE" || iz=="ne"){
+						cout<<"Da li zelite kupiti jedan od nasih ponuda?(DA/NE)"<<endl;
+						cin>>i2;
+						}
+					}while(i2!="DA" && i2!="NE" && i2!="da" && i2!="ne");
+					if(i2=="da" || i2=="DA"){
+						kupiArtikal();//aBd 
+					}
+					if(i2=="ne" || i2=="NE"){
+						korisnickiMenu("korisnik");
+					}
+    		}
+	
+        
 	}while(izbor<0 || izbor>5); 
 }
 void kupiArtikal(){
     
-}    
     
+}
 
 };
 void registracija(string *username,string *pasword,int j){
@@ -643,11 +686,11 @@ do{
 			login(lusername,lpasword,b);
 			b++;
 			if(adm(lusername,lpasword,b,novi)){
-			user.adminMeni();
+			user.adminMeni("korisnik");
 				system("pause");
 			}
 			if(reg(username,pasword,lusername,lpasword,b,a)){
-				user.korisnickiMenu();
+				user.korisnickiMenu("korisnik");
 				system("pause");
 			}else{
 				cout<<"Pogresan username ili password \n";
