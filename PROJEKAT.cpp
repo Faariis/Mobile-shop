@@ -731,7 +731,9 @@ void prodajArtikal(int ID){
         narudzba<<"\n--------------------------------------------------------";
         narudzba.close();
         system("cls");
-        Sleep(1500);//ubaceno da bi se program malo zaustavio (loading) prije nego sto se ispise sljedeca poruka
+        cout<<"\nLoading...";
+        Sleep(2000);//ubaceno da bi se program malo zaustavio (loading) prije nego sto se ispise sljedeca poruka
+        system("cls");
         cout<<"\n\n\tCestitamo uspjesno ste narucili mobitel, na vasoj adresi ce biti najduze za 48h.";
         cout<<"\n\tSvakako nam javite utiske.";
         cout<<"\n\n\tVas MOBI-Shop :)\n"<<endl;
