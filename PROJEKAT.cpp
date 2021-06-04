@@ -23,6 +23,7 @@ struct kupac{
     int brTel;
 };
 struct mobitel{
+    int id;
     nazivMobitela naziv;
     string modelMobitela;
     int godinaProizvodnje;
@@ -30,6 +31,7 @@ struct mobitel{
     int ROM;
     int kolicina;
     float cijena;
+    string nazivv;//koristimo samo za niz 
 
 	string vratiMob(){
         switch (naziv){
@@ -226,6 +228,38 @@ cout << "\t\t\t\\________________________/" << endl;
             }
             unos.close();
         }
+            /*-------------------PROVJERAVA DA LI SE MOBITEL NALAZI U SKLADISTU(IMA LI GA NA STANJU)-----------------*/
+    void provjeriMob(){
+                ifstream unosV("skladiste.txt");
+                string linija;
+                int br=0;
+                if (unosV.fail()){
+                    cout<<"fail";
+                }else{
+                    do{
+                        getline(unosV, linija);
+                        br++;
+                    }while(!unosV.eof());
+                }
+            mobitel nizMobitela[br-3];
+                string temp;
+                    getline(unosV, temp);
+                    getline(unosV, temp);
+                    getline(unosV, temp);
+                    for(int i=0; i<br-3; i++){
+                        unosV>>nizMobitela[i].id>>nizMobitela[i].nazivv>>nizMobitela[i].modelMobitela>>nizMobitela[i].godinaProizvodnje>>nizMobitela[i].RAM>>
+                        nizMobitela[i].ROM>>nizMobitela[i].kolicina>>nizMobitela[i].cijena;
+                    }
+                    cout<<"Ispis niza: ";
+                    for(int i=0; i<br-3; i++){
+                        cout<<nizMobitela[i].id<<nizMobitela[i].nazivv<<nizMobitela[i].modelMobitela<<nizMobitela[i].godinaProizvodnje<<nizMobitela[i].RAM<<
+                        nizMobitela[i].ROM<<nizMobitela[i].kolicina<<nizMobitela[i].cijena;
+                    }
+
+            unosV.close();
+        
+        
+    }
 
          /*-------------------PROVJERA STANJA MENU(nalazi se u sklopu admin menua)-----------------*/
         void ProvjeraStanjaMeni(string rec){//rec ce biti jednako "admin" ili "korisnik" te u zavisnosti od toga ce se pozivati 
@@ -247,6 +281,10 @@ cout << "\t\t\t\\________________________/" << endl;
                 system("cls");
                 if(rec=="admin") IspisiSortirano("admin");
                 if(rec=="korisnik") IspisiSortirano("korisnik");
+                case 2:
+                if(rec=="admin") provjeriMob();
+                if(rec=="korisnik") provjeriMob();
+                break;
                 case 0:
 				if(rec=="admin"){
 			    	adminMeni("admin");
@@ -569,6 +607,7 @@ cout << "\t\t\t\\________________________/" << endl;
         system("PAUSE");
         }
     }
+    
 void korisnickiMenu(string rec){//rec =="korisnik" ,pogledaj u int mainu
 	system("cls");
 	cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
@@ -656,7 +695,7 @@ bool adm(string *luser,string *lpas,int i,Admin *novi ){
 int main (){
     
     mobitel user;
-    
+    /*
 	int izbor,a=0,b=0,br=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
@@ -702,5 +741,8 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
+    */
+user.korisnickiMenu("korisnik");
+
 return 0;
 }
