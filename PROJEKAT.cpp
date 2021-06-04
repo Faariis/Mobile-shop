@@ -10,6 +10,7 @@
 #include<fstream>   
 #include<sstream>
 #include <algorithm>
+#include "windows.h" //potrebno za funkciju sleep
 
 using namespace std;
 enum nazivMobitela {Samsung=1, iPhone, Huawei, Xiaomi,};
@@ -20,7 +21,7 @@ struct Admin{
 struct kupac{
     string imePrezime;
     string adresa;
-    int brTel;
+    string brTel;
 };
 struct mobitel{
     int id;
@@ -32,6 +33,7 @@ struct mobitel{
     int kolicina;
     float cijena;
     string nazivv;//koristimo samo za niz 
+    kupac kupac; //potrebno jer se funkcija kupiArtikal() nalazi unutar mobitel structa
 
 	string vratiMob(){
         switch (naziv){
@@ -65,6 +67,18 @@ struct mobitel{
             return "1024";
 
 	    }
+    }
+    string vratiPostu(int izbor){
+        switch(izbor){
+            case 1:
+            return "EuroExpress";
+            case 2:
+            return "BH-PostExpress";
+            case 3:
+            return "A2B-Express";
+            case 4:
+            return "X-Express";
+        }
     }
     /*-------------------LOGIN MENU (otvara ga na pocetku programa)-----------------*/
    void loginMeni(){
@@ -108,7 +122,7 @@ cout << "\t\t\t\\________________________/" << endl;
     /*-------------------ADMIN MENU (otvara ga nakon što se prijavimo kao admini)-----------------*/
     void adminMeni(string rec){
    	system("cls");
-   		cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
+   		cout<<"-----------------------ADMIN MENU!---------------------------------"<<endl;
 	int izbor;
 	do{
 		cout << "1. Dodati novi artikal(mobitel): " << endl;
@@ -236,29 +250,33 @@ cout << "\t\t\t\\________________________/" << endl;
                 if (unosV.fail()){
                     cout<<"fail";
                 }else{
-                    do{
+                    while(!unosV.eof()){
                         getline(unosV, linija);
                         br++;
-                    }while(!unosV.eof());
+                    };
                 }
-            mobitel nizMobitela[br-3];
+                unosV.close();
+                unosV.open("skladiste.txt", ios::in);
+            mobitel nizMobitela[br-4]; //pravimo niz jer nam treba da provjerimo da li se mobitel nalazi na stanju
                 string temp;
-                    getline(unosV, temp);
-                    getline(unosV, temp);
-                    getline(unosV, temp);
-                    for(int i=0; i<br-3; i++){
+                    getline(unosV, temp);   //
+                    getline(unosV, temp);   //preskacemo prve 3 linije
+                    getline(unosV, temp);   //
+                    for(int i=0; i<br-4; i++){ //unos iz datoteke u niz
                         unosV>>nizMobitela[i].id>>nizMobitela[i].nazivv>>nizMobitela[i].modelMobitela>>nizMobitela[i].godinaProizvodnje>>nizMobitela[i].RAM>>
                         nizMobitela[i].ROM>>nizMobitela[i].kolicina>>nizMobitela[i].cijena;
                     }
-                    cout<<"Ispis niza: ";
-                    for(int i=0; i<br-3; i++){
-                        cout<<nizMobitela[i].id<<nizMobitela[i].nazivv<<nizMobitela[i].modelMobitela<<nizMobitela[i].godinaProizvodnje<<nizMobitela[i].RAM<<
-                        nizMobitela[i].ROM<<nizMobitela[i].kolicina<<nizMobitela[i].cijena;
-                    }
-
             unosV.close();
-        
-        
+            string proizv;   //
+            string mod;     //potrebni stringovi za poredjenje sa nizom
+            cout<<"Unesite proizvodjaca mobitela (npr. iPhone): ";
+            cin>>proizv;
+            cout<<"Unesite model mobitela (npr. 12-pro): ";
+            cin>>mod;
+            for(int i=0;i<br-3;i++){
+                if(strcmp(proizv,nizMobitela[i].nazivv)==0)
+            }
+    
     }
 
          /*-------------------PROVJERA STANJA MENU(nalazi se u sklopu admin menua)-----------------*/
@@ -335,7 +353,7 @@ cout << "\t\t\t\\________________________/" << endl;
             	if(rec=="admin"){
 		   ProvjeraStanjaMeni("admin");
         }	if(rec=="korisnik"){
-		   ProvjeraStanjaMeni("korisnik");
+		   korisnickiMenu("korisnik");
         }
         } 
     
@@ -615,8 +633,6 @@ void korisnickiMenu(string rec){//rec =="korisnik" ,pogledaj u int mainu
 	do{
 		cout << "1. Pogledajte nasu ponudu mobitela: " << endl;
 		cout << "2. Provjera stanja artikala: " << endl;
-        cout << "3. Provjeri narudzbe: " << endl;
-		cout<<"4. Stanje kase"<<endl;
         cout <<"0. Kraj: "<<endl;
 		cout << "Unesite izbor: ";
 		cin >> izbor;
@@ -624,35 +640,110 @@ void korisnickiMenu(string rec){//rec =="korisnik" ,pogledaj u int mainu
 
         switch(izbor){
             case 1:
+                system("cls");
 	            IspisMobitela();
-	            string iz,i2;
-	            do{
-		            cout<<"Da li te zelite sortirati proizvode(DA/NE)"<<endl;
-		            cin>>iz;
-	            }while(iz!="DA" && iz!="NE" && iz!="da" && iz!="ne" );
-	            if(iz=="DA" || iz=="da"){
-					ProvjeraStanjaMeni("korisnik");//ide u provjeruStanjaMeni namjenjena korsiniku odnosnoondje gdje ima if(rec=="korisnik")u navedenoj funkciji
-	    		} do{
-					if(iz=="NE" || iz=="ne"){
-						cout<<"Da li zelite kupiti jedan od nasih ponuda?(DA/NE)"<<endl;
-						cin>>i2;
-						}
-					}while(i2!="DA" && i2!="NE" && i2!="da" && i2!="ne");
-					if(i2=="da" || i2=="DA"){
-						kupiArtikal();//aBd 
-					}
-					if(i2=="ne" || i2=="NE"){
-						korisnickiMenu("korisnik");
-					}
+                cout << "\n\n1. Kupi artikal: " << endl;
+                cout << "2. Ispisi sortirano artikle: " << endl;
+                cout <<"0. Kraj: "<<endl;
+                do{
+                    cout << "Unesite izbor: ";
+		            cin >> izbor;
+                }while(izbor<0 || izbor>2);
+                if(izbor==1) KupiArtikal();
+                else if(izbor==2) IspisiSortirano("korisnik");//ide u ispisiSortirano namjenjena korsiniku odnosno ondje gdje ima if(rec=="korisnik")u navedenoj funkciji
+                else if(izbor==0) korisnickiMenu("korisnik");
     		}
 	
         
 	}while(izbor<0 || izbor>5); 
 }
-void kupiArtikal(){
-    
-    
-}
+  /*-------------------POTVRDI PRODAJU ARTIKLA (funkciju koju ima samo admin)---------------------*/
+void prodajArtikal(int ID){
+    ifstream unos("skladiste.txt");
+    ofstream ispis("temp.txt");
+    string temp;
+    int broj;
+    if(unos.fail()) cout<<"Nemoguce otvoriti datoteku!"<<endl;
+    else{
+        getline(unos, temp);
+        ispis<<temp<<endl;
+        getline(unos, temp);
+        ispis<<temp<<endl;
+        getline(unos, temp);
+        ispis<<temp<<endl;
+        while(true){
+            unos>>broj;
+            if(unos.eof()) break;
+            if(broj==ID){
+                ispis<<left<<setw(6)<<broj;
+                unos>>temp;
+                ispis<<setw(14)<<temp;
+                unos>>temp;
+                ispis<<setw(10)<<temp;
+                unos>>temp;
+                ispis<<setw(21)<<temp;
+                unos>>temp;
+                ispis<<setw(10)<<temp;
+                unos>>temp;
+                ispis<<setw(10)<<temp;
+                unos>>broj;
+                ispis<<setw(12)<<broj-1; // smanjujemo kolicinu iz datoteke za 1
+                unos>>temp;
+                ispis<<setw(13)<<temp<<endl;
+            }
+            else{
+                ispis<<broj;
+                getline(unos, temp);
+                ispis<<temp<<endl;
+            }
+        }
+    }
+    unos.close();
+    ispis.close();
+    remove("skladiste.txt");
+    rename("temp.txt", "skladiste.txt");
+}    
+ /*-------------------FUNKCIJA KOJU IZBACUJE KAD KUPAC ODABERE OPCIJU -Kupi artikal- ---------------------*/
+    void KupiArtikal(){
+        int izbor;
+        ofstream narudzba("narudzbe.txt", ios::app); //smjesta u posebnu datoteku narudzbe.txt koja je dostupna adminu
+        narudzba<<"--------------------------------------------------------\n";
+        cout<<"\n\tUnesite vase ime i prezime: ";
+        cin.ignore();
+        getline(cin, kupac.imePrezime);
+        narudzba<<kupac.imePrezime<<" ";
+        cout<<"\tUnesite vasu adresu (bez razmaka sa crticama izmedju- npr. Travnicka-16-Zenica): ";
+        getline(cin, kupac.adresa);
+        narudzba<<kupac.adresa<<" ";
+        cout<<"\tUnesite broj telefona: ";
+        getline(cin, kupac.brTel);
+        narudzba<<kupac.brTel<<" ";
+        cout<<"\tUnesite ID mobitela koji zelite kupiti: ";
+        cin>>id;
+        narudzba<<id<<" ";
+        cout<<"\n\tOdaberite brzu postu: ";
+            cout<<"\n-------------------------------------------------------------------------------"<<endl;
+            cout<<"\t\t1-EuroExpress (10 KM - isporuka u toku 24h)"<<endl;
+            cout<<"\t\t2-BH PostExpress (8 KM - isporuka u toku 24h-48h)"<<endl;
+            cout<<"\t\t3-A2B Express (12 KM - isporuka u toku 24h)"<<endl;
+            cout<<"\t\t4-X Express (13 KM - isporuka u toku 24h)"<<endl;
+            cout<<"-------------------------------------------------------------------------------"<<endl;
+        do{
+            cout<<"\t\tIzbor: ";
+            cin>>izbor;
+        }while(izbor<1 || izbor>4);
+        narudzba<<vratiPostu(izbor);
+        narudzba<<"\n--------------------------------------------------------";
+        narudzba.close();
+        system("cls");
+        Sleep(1500);//ubaceno da bi se program malo zaustavio (loading) prije nego sto se ispise sljedeca poruka
+        cout<<"\n\n\tCestitamo uspjesno ste narucili mobitel, na vasoj adresi ce biti najduze za 48h.";
+        cout<<"\n\tSvakako nam javite utiske.";
+        cout<<"\n\n\tVas MOBI-Shop :)\n"<<endl;
+        system("PAUSE");
+        cin.ignore();
+        korisnickiMenu("korisnik");
+    }
 
 };
 void registracija(string *username,string *pasword,int j){
