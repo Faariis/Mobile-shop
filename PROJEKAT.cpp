@@ -136,8 +136,6 @@ cout << "\t\t\t\\________________________/" << endl;
 	}while(izbor<0 || izbor>4); 
 
     switch(izbor){
-    	case 0:
-        loginMeni();
         case 1:
         system("cls");
         unosMobitela();
@@ -146,6 +144,13 @@ cout << "\t\t\t\\________________________/" << endl;
         ProvjeraStanjaMeni("admin");
         case 3:
         system("cls");
+        provjeriNarudzbe();
+        case 4:
+        system("cls");
+        IspisMobitela();
+        prodajArtikal();
+        case 0:
+        loginMeni();
     }
 }
      /*-------------------FUNKCIJA ZA UNOS MOBITELA U SKLOPU ADMIN MENUA-----------------*/
@@ -314,8 +319,58 @@ cout << "\t\t\t\\________________________/" << endl;
 
                 }
         }
-    
+        /*-------------------PROVJERAVA IMA LI NARUDZBI U DATOTECI narudzbe.txt i prihvata te narudzbe(brise iz datoteke)-----------------*/
+        void provjeriNarudzbe(){
+            cout<<"---------------------------------------------------------------------------------------------------------------------\n";
+            cout<<"                             LISTA NARUDZBI\n";
+            cout<<"---------------------------------------------------------------------------------------------------------------------\n";
+            cout<<left<<setw(26)<<"Ime i prezime: "<<setw(30)<<"Adresa: "<<setw(20)<<"Br.telefona: "<<setw(20)<<"ID mobitela: "<<"Posta: "<<endl;
+            cout<<"---------------------------------------------------------------------------------------------------------------------\n";
+            ifstream narudzbe ("narudzbe.txt");
+            string temp;
+            int br=0;
+            if(narudzbe.fail()) cout<<"Nemoguce pristupiti bazi podataka!!!";
+            else{
+                while(!narudzbe.eof()){
+                    getline(narudzbe, temp);
+                    narudzbe>>temp;
+                    cout<<temp<<" ";
+                    narudzbe>>temp;
+                    cout<<setw(20)<<temp;
+                    narudzbe>>temp;
+                    cout<<setw(30)<<temp;
+                    narudzbe>>temp;
+                    cout<<setw(26)<<temp;
+                    narudzbe>>temp;
+                    cout<<setw(14)<<temp;
+                    narudzbe>>temp;
+                    cout<<temp<<endl;
+                    narudzbe>>temp;   
+                    br++;    
+                }
+                narudzbe.close();
 
+            }
+            cout<<"\n------------------------------------------------------";
+            cout<<"\n\tUkupan broj narudzbi: "<<br-1<<endl;
+            cout<<"------------------------------------------------------\n\n";
+
+            cout<<"1. Prodaj artikal: "<<endl;
+            cout<<"0. Nazad: "<<endl;
+            int izbor;
+            do{
+                cout<<"\nIzbor: ";
+                cin>>izbor;
+            }while(izbor < 0 || izbor > 1);
+            switch(izbor){
+                case 1:
+                cout<<endl;
+                prodajArtikal();
+                system("PAUSE");
+                case 0:
+                adminMeni("admin");
+            }
+        }
          /*-------------------PROVJERA STANJA MENU(nalazi se u sklopu admin menua)-----------------*/
         void ProvjeraStanjaMeni(string rec){//rec ce biti jednako "admin" ili "korisnik" te u zavisnosti od toga ce se pozivati 
             system("cls");
@@ -653,10 +708,36 @@ void korisnickiMenu(string rec){//rec =="korisnik" ,pogledaj u int mainu
 	}while(izbor<0 || izbor>2); 
 }
   /*-------------------POTVRDI PRODAJU ARTIKLA (funkciju koju ima samo admin)---------------------*/
-void prodajArtikal(int ID){
+void prodajArtikal(){
+    //brisanje narudzbe iz datoteke narudzbe.txt
+    cin.ignore();
+    string line, name;
+    string tem;
+        cout << "Unesite ime i prezime osobe koja je narucila mobitel: ";
+    getline(cin, name);
+    ifstream narudzbe("narudzbe.txt", ios::in);
+    ofstream ispiss ("tempp.txt");
+    while (getline(narudzbe, line))
+    {
+    if (line.substr(0, name.size()) != name) { //sve dok je razlicito od imena i prezimena koje smo unijeli
+        ispiss << line << endl;                //ispisuje liniju u datoteku 
+        }
+    else if (line.substr(0, name.size()) == name) { //ako se poklopi ime i prezime sa necim u datoteci
+        getline(narudzbe, tem);                     //preskace sljedecu liniju (ispod svake narudzbe u datoteci imaju linije zbog izgleda, ali je i njih potrebno izbrisati zajedno sa narudzbom)
+        }
+    }
+    narudzbe.close();
+    ispiss.close();
+    remove("narudzbe.txt");
+    rename("tempp.txt", "narudzbe.txt");
+
+    //smanjivanje količine za 1 iz datoteke skladiste.txt
     ifstream unos("skladiste.txt");
     ofstream ispis("temp.txt");
     string temp;
+    int ID;
+    cout<<"\nUnesite ID mobitela: ";
+    cin>>ID;
     int broj;
     if(unos.fail()) cout<<"Nemoguce otvoriti datoteku!"<<endl;
     else{
@@ -697,12 +778,21 @@ void prodajArtikal(int ID){
     ispis.close();
     remove("skladiste.txt");                     //brise skladiste.txt
     rename("temp.txt", "skladiste.txt");        //mijenja naziv temp.txt u skladiste.txt
+        system("cls");
+        cout<<"\n\tLoading...";
+        Sleep(2000);//ubaceno da bi se program malo zaustavio (loading) prije nego sto se ispise sljedeca poruka
+        system("cls");
+    cout<<"\n\tUspjesno ste prodali artikal, brza posta je obavijestena za preuzimanje paketa.\n"<<endl;
+    system("PAUSE");
+    cin.ignore();
+    system("cls");
+    provjeriNarudzbe();
 }    
  /*-------------------FUNKCIJA KOJU IZBACUJE KAD KUPAC ODABERE OPCIJU -Kupi artikal- ---------------------*/
     void KupiArtikal(){
         int izbor;
         ofstream narudzba("narudzbe.txt", ios::app); //smjesta u posebnu datoteku narudzbe.txt koja je dostupna adminu
-        narudzba<<"--------------------------------------------------------\n";
+        narudzba<<"------------------------------------\n";
         cout<<"\n\tUnesite vase ime i prezime: ";
         cin.ignore();
         getline(cin, kupac.imePrezime);
@@ -728,10 +818,10 @@ void prodajArtikal(int ID){
             cin>>izbor;
         }while(izbor<1 || izbor>4);
         narudzba<<vratiPostu(izbor);
-        narudzba<<"\n--------------------------------------------------------";
+        narudzba<<"\n-----------------------------------";
         narudzba.close();
         system("cls");
-        cout<<"\nLoading...";
+        cout<<"\n\tLoading...";
         Sleep(2000);//ubaceno da bi se program malo zaustavio (loading) prije nego sto se ispise sljedeca poruka
         system("cls");
         cout<<"\n\n\tCestitamo uspjesno ste narucili mobitel, na vasoj adresi ce biti najduze za 48h.";
@@ -783,7 +873,6 @@ bool adm(string *luser,string *lpas,int i,Admin *novi ){
 int main (){
     
     mobitel user;
-    /*
 	int izbor,a=0,b=0,br=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
@@ -829,8 +918,7 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
-    */
-user.korisnickiMenu("korisnik");
+    
 
 return 0;
 }
