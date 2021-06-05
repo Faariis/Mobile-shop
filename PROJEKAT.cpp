@@ -264,15 +264,20 @@ cout << "\t\t\t\\________________________/" << endl;
             unosV.close();
             string proizv;   //
             string mod;     //potrebni stringovi za poredjenje sa nizom
-            cout<<"Unesite proizvodjaca mobitela (npr. iPhone): ";
+            //for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+            cout << "Unesite proizvodjaca mobitela (npr. iPhone): ";
             cin>>proizv;
-            cout<<"Unesite model mobitela (npr. 12-pro): ";
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+            cout << "Unesite model mobitela (npr. 12-pro): ";
             cin>>mod;
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
             int br1=0;
             for(int i=0;i<br-4;i++){
                 if(strcmp(proizv.c_str(),nizMobitela[i].nazivv.c_str())==0 && strcmp(mod.c_str(),nizMobitela[i].modelMobitela.c_str())==0 && nizMobitela[i].kolicina>0){
                 	br1++;
-                    cout<<"\n\tTrazeni artikal je dostupan\n"<<endl;
+        
+                    cout<<"\n\t\t\tTrazeni artikal je dostupan.\n"<<endl;
+                    for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
                     cout<<left<<setw(13)<<"ID: "<<nizMobitela[i].id<<endl;
                     cout<<left<<setw(13)<<"Proizvodjac: "<<nizMobitela[i].nazivv<<endl;
                     cout<<left<<setw(13)<<"Model: "<<nizMobitela[i].modelMobitela<<endl;
@@ -280,11 +285,14 @@ cout << "\t\t\t\\________________________/" << endl;
                     cout<<left<<setw(13)<<"RAM: "<<nizMobitela[i].RAM<<endl;
                     cout<<left<<setw(13)<<"ROM: "<<nizMobitela[i].ROM<<endl;
                     if(rec=="admin") cout<<setw(13)<<"Kolicina"<<nizMobitela[i].kolicina<<endl;
-                    cout<<left<<setw(13)<<"Cijena: "<<nizMobitela[i].cijena<<endl<<endl;
+                    cout<<left<<setw(13)<<"Cijena: "<<nizMobitela[i].cijena<<endl;
                     int izbor;
                     if(rec=="korisnik"){
-                        cout<<"1. Kupi artikal";
-                        cout<<"\n0. Nazad";
+                        cout << "\n\t\t\t  ___________________" << endl;
+                    	cout << "\t\t\t  |                 |" << endl;
+                        cout << "\t\t\t  | 1. Kupi artikal |" << endl;
+                        cout << "\t\t\t  | 0. Nazad        |" << endl;
+                        cout << "\t\t\t  |_________________|\n" << endl;
                         do{
                             cout<<"\nIzbor: ";
                             cin>>izbor;
@@ -312,7 +320,8 @@ cout << "\t\t\t\\________________________/" << endl;
 					 adminMeni("admin");
             }   
                     if(rec=="korisnik") {
-                        cout<<"Nema vise na stanju, molimo pogledajte neki drugi mobitel iz nase raznovrsne ponude! "<<endl;
+                        cout<<"Nema vise na stanju, molimo pogledajte neki drugi mobitel iz nase ponude! "<<endl;
+                        for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
                         system("PAUSE");
                         korisnickiMenu("korisnik");
                     }
@@ -410,11 +419,13 @@ cout << "\t\t\t\\________________________/" << endl;
         system("cls");
         int izbor;
         do{
-            cout << "1. Sortirano po proizvodjacu: " << endl;
-            cout << "2. Sortirano po RAM-u: " << endl;
-            cout << "3. Sortirano po ROM-u: " << endl;
-            cout << "4. Sortirano po cijeni: " << endl;
-            cout << "0. Nazad: " << endl;
+        	cout << "\n\t\t\t_________________________________" << endl;
+            cout << "\t\t\t| 1. Sortirano po proizvodjacu: |" << endl;
+            cout << "\t\t\t| 2. Sortirano po RAM-u:        |" << endl;
+            cout << "\t\t\t| 3. Sortirano po ROM-u:        |" << endl;
+            cout << "\t\t\t| 4. Sortirano po cijeni:       |" << endl;
+            cout << "\t\t\t| 0. Nazad:                     |" << endl;
+            cout << "\t\t\t|_______________________________|\n" << endl;
             cout << "Unesite izbor: ";
             cin >> izbor;
             cin.ignore();
@@ -675,12 +686,23 @@ cout << "\t\t\t\\________________________/" << endl;
     
 void korisnickiMenu(string rec){//rec =="korisnik" ,pogledaj u int mainu
 	system("cls");
-	cout<<"-----------------------KORISNICKI MENU!---------------------------------"<<endl;
+	//===================================================================================================================
+	        for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+	//for(int i=1;i<=80;i++){if(i<80){cout << "*";}else if(i==80){cout << endl;}}
+	cout << "\t\t\t\t________________" << endl;
+	cout << "\t\t\t\t|              |" << endl;
+	cout << "\t\t\t\t| Dobro dosli! |" << endl;
+	cout << "\t\t\t\t|______________|\n";
+	        for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+	//===================================================================================================================
 	int izbor;
 	do{
-		cout << "1. Pogledajte nasu ponudu mobitela: " << endl;
-		cout << "2. Provjera stanja artikala: " << endl;
-        cout <<"0. Kraj: "<<endl;
+		cout << "\n\t\t   ";for(int i=1;i<=39;i++){cout << "_";};cout << endl;
+		cout << "\t\t   |                                     |" << endl;
+		cout << "\t\t   | 1. Pogledajte nasu ponudu mobitela: |" << endl;
+		cout << "\t\t   | 2. Provjera stanja artikala:        |" << endl;
+        cout << "\t\t   | 0. Kraj:                            |" << endl;
+        cout << "\t\t   |_____________________________________|\n" << endl;
 		cout << "Unesite izbor: ";
 		cin >> izbor;
 		cin.ignore();
@@ -689,9 +711,12 @@ void korisnickiMenu(string rec){//rec =="korisnik" ,pogledaj u int mainu
             case 1:
                 system("cls");
 	            IspisMobitela();
-                cout << "\n\n1. Kupi artikal: " << endl;
-                cout << "2. Ispisi sortirano artikle: " << endl;
-                cout <<"0. Kraj: "<<endl;
+	            cout << "\n\t\t\t";for(int i=1;i<=32;i++){cout << "_";};cout << endl;
+	            cout << "\t\t\t|                              |" << endl;
+                cout << "\t\t\t| 1. Kupi artikal:             |" << endl;
+                cout << "\t\t\t| 2. Ispisi sortirano artikle: |" << endl;
+                cout << "\t\t\t| 0. Kraj:                     |" << endl;
+				cout << "\t\t\t|______________________________|\n" << endl; 
                 do{
                     cout << "Unesite izbor: ";
 		            cin >> izbor;
@@ -792,41 +817,56 @@ void prodajArtikal(){
     void KupiArtikal(){
         int izbor;
         ofstream narudzba("narudzbe.txt", ios::app); //smjesta u posebnu datoteku narudzbe.txt koja je dostupna adminu
-        narudzba<<"------------------------------------\n";
-        cout<<"\n\tUnesite vase ime i prezime: ";
+        narudzba<<"--------------------------------------------------------\n";
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+        cout<<"Unesite vase ime i prezime: ";
         cin.ignore();
         getline(cin, kupac.imePrezime);
         narudzba<<kupac.imePrezime<<" ";
-        cout<<"\tUnesite vasu adresu (bez razmaka sa crticama izmedju- npr. Travnicka-16-Zenica): ";
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+        cout<<"Unesite vasu adresu (npr. Travnicka-16-Zenica): ";
         getline(cin, kupac.adresa);
         narudzba<<kupac.adresa<<" ";
-        cout<<"\tUnesite broj telefona: ";
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+        cout<<"Unesite broj telefona: ";
         getline(cin, kupac.brTel);
         narudzba<<kupac.brTel<<" ";
-        cout<<"\tUnesite ID mobitela koji zelite kupiti: ";
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+        cout<<"Unesite ID mobitela koji zelite kupiti: ";
         cin>>id;
         narudzba<<id<<" ";
-        cout<<"\n\tOdaberite brzu postu: ";
-            cout<<"\n-------------------------------------------------------------------------------"<<endl;
-            cout<<"\t\t1-EuroExpress (10 KM - isporuka u toku 24h)"<<endl;
-            cout<<"\t\t2-BH PostExpress (8 KM - isporuka u toku 24h-48h)"<<endl;
-            cout<<"\t\t3-A2B Express (12 KM - isporuka u toku 24h)"<<endl;
-            cout<<"\t\t4-X Express (13 KM - isporuka u toku 24h)"<<endl;
-            cout<<"-------------------------------------------------------------------------------"<<endl;
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+        cout<<"Odaberite brzu postu: " << endl;
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+            cout << "\t\t";for(int i=1;i<=53;i++){cout << "_";};cout << endl;
+            cout << "\t\t|                                                   |" << endl;
+            cout << "\t\t| 1-EuroExpress (10 KM - isporuka u toku 24h)       |" << endl;
+            cout << "\t\t| 2-BH PostExpress (8 KM - isporuka u toku 24h-48h) |" << endl;
+            cout << "\t\t| 3-A2B Express (12 KM - isporuka u toku 24h)       |" << endl;
+            cout << "\t\t| 4-X Express (13 KM - isporuka u toku 24h)         |" << endl;
+            cout << "\t\t|___________________________________________________|\n" << endl;
+            for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
         do{
             cout<<"\t\tIzbor: ";
             cin>>izbor;
         }while(izbor<1 || izbor>4);
         narudzba<<vratiPostu(izbor);
-        narudzba<<"\n-----------------------------------";
+        narudzba<<"\n--------------------------------------------------------";
         narudzba.close();
         system("cls");
-        cout<<"\n\tLoading...";
+            for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+        cout<<"\n\t\t\t\t  Loading...\n" << endl;
+            for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
         Sleep(2000);//ubaceno da bi se program malo zaustavio (loading) prije nego sto se ispise sljedeca poruka
         system("cls");
-        cout<<"\n\n\tCestitamo uspjesno ste narucili mobitel, na vasoj adresi ce biti najduze za 48h.";
-        cout<<"\n\tSvakako nam javite utiske.";
-        cout<<"\n\n\tVas MOBI-Shop :)\n"<<endl;
+            for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+	    cout << "\t\t  ";for(int i=1;i<=45;i++){cout << "_";};cout << endl;
+	    cout << "\t\t  |                                           |" << endl;
+		cout << "\t\t  | Cestitamo, uspjesno ste narucili mobitel. |" << endl;
+		cout << "\t\t  | Paket ocekujte u roku od 48 sati.         |" << endl;
+        cout << "\t\t  | Vas MOBI-Shop, uvijek tu za vas!          |" << endl;
+        cout << "\t\t  |___________________________________________|\n" << endl;
+            for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
         system("PAUSE");
         cin.ignore();
         korisnickiMenu("korisnik");
@@ -834,15 +874,19 @@ void prodajArtikal(){
 
 };
 void registracija(string *username,string *pasword,int j){
-	cout<<"Unesite username:";
+	for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+	cout<<"Unesite username: ";
     getline(cin,username[j]);
-    cout<<"Unesite pasword:";
+    for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+    cout<<"Unesite password: ";
     getline(cin,pasword[j]);
 }
 void login(string *lusername,string *lpasword,int i){
-	cout<<"Username:";
+	for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+	cout<<"Username: ";
     getline(cin,lusername[i]);
-    cout<<"Pasword:";
+    for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+    cout<<"Password: ";
     getline(cin,lpasword[i]);
 }
 
@@ -873,6 +917,7 @@ bool adm(string *luser,string *lpas,int i,Admin *novi ){
 int main (){
     
     mobitel user;
+    /*
 	int izbor,a=0,b=0,br=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
@@ -918,7 +963,7 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
-    
-
+    */
+user.adminMeni("admin");
 return 0;
 }
