@@ -873,43 +873,41 @@ void prodajArtikal(){
     }
 
 };
+//unos username i pasworda za registraciju
 void registracija(string *username,string *pasword,int j){
-	for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
-	cout<<"Unesite username: ";
+	cout<<"Unesite username:";
     getline(cin,username[j]);
-    for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
-    cout<<"Unesite password: ";
+    cout<<"Unesite pasword:";
     getline(cin,pasword[j]);
 }
+//unos username i pasworda  i smjestanje u niz za login
 void login(string *lusername,string *lpasword,int i){
-	for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
-	cout<<"Username: ";
+	cout<<"Username:";
     getline(cin,lusername[i]);
-    for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
-    cout<<"Password: ";
+    cout<<"Pasword:";
     getline(cin,lpasword[i]);
 }
-
-
+//porede se uneseni pasword i username za login,sa do tad unesenim pasword i username u registracijama te vraca true ako postoji username i pasword u registracijama
+//p nam je potrebno samo za ispis odnosno pristup unesenom username ii pasword
 bool reg(string *regU,string *regP,string *luser,string *lpas,int i,int j,int &p){
 	int k=0;
 	for(int n=0;n<j;n++){
 		if (strcmp(luser[i-1].c_str(),regU[n].c_str()) == 0 && strcmp(lpas[i-1].c_str(),regP[n].c_str())== 0){	
 				k++;
-				p==i;
+				p=i-1;
 			}	}
 		if(k==0) return false;
 		else	return true;
 		
 }
 
-
-
+//porede se uneseni pasword i username za login,sa paswordima i username u datoteci admini.txt u kojoj smo smjestili ove varijable,te vraca true ako postoji username i pasword u datoteci admini.txt
+//p nam je potrebno samo za ispis odnosno pristup unesenom username ii pasword loginovanog admina
 bool adm(string *luser,string *lpas,int i,Admin *novi,int &o ){
 	int k=0;
 	for(int n=0;n<4;n++){
 		if (strcmp(luser[i-1].c_str(),novi[n].username.c_str()) == 0 && strcmp(lpas[i-1].c_str(),novi[n].sifra.c_str())== 0){	
-				n==o;
+				o=n;
 				k++;
 			}	}
 		if(k==0) return false;
