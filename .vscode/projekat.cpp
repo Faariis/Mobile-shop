@@ -84,6 +84,36 @@ struct mobitel{
    void loginMeni(){
 //LOGIN MENI
 	system("cls"); 
+	
+	system("Color 1A");
+		std::cout << "\t    Dobrodosli";
+		Sleep(200);
+		system("Color 2B");
+		std::cout << "\t\   Dobrodosli" ;
+		Sleep(200);
+		system("Color 3C");
+		std::cout << "\t    Dobrodosli" ;
+		Sleep(200);
+		system("Color 4D");
+		std::cout << "\t    Dobrodosli" ;
+		Sleep(200);
+		system("Color 5E");
+		std::cout << "\t    Dobrodosli"<<endl;
+		Sleep(200);
+		system("Color 6F");
+		std::cout << "\t    MOBI SHOP" ;
+		Sleep(200);
+		system("Color A1");
+		std::cout << "\t    MOBI SHOP" ;
+		Sleep(200);
+		system("Color B2");
+		std::cout << "\t    MOBI SHOP" ;
+		Sleep(200);
+		system("Color C3");
+		std::cout << "\t    MOBI SHOP";
+		Sleep(200);
+		system("Color F0");
+		std::cout << "\t    MOBI SHOP" ;
 		//==========================================================================
 		for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
 		cout << "\t\t\t ";for(int i=1;i<=25;i++){cout << "_";};cout << endl;
