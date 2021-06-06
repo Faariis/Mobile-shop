@@ -18,7 +18,7 @@ ID:   Proizvodjac:  Model:    Godina proizvodnje:  RAM(GB):  ROM(GB):  Kolicina:
 15    Samsung       S21       2020                 4         32        3           390          
 16    Samsung       A72       2021                 8         1024      8           899          
 17    Xiaomi        Poco-x3   2021                 6         64        43          600          
-18    iPhone        7-plus    2016                 8        64        9           888          
+18    iPhone        7-plus    2016                 8         64        9           888          
 19    Xiaomi        Note-8    2021                 4         512       5           300          
 20    Xiaomi        Mi-11i    2021                 8         1024      7           2032         
 21    Huawei        Y9a       2020                 6         128       9           450          
