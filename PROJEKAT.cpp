@@ -170,7 +170,9 @@ struct mobitel{
          case 5:
         	int b=0;
         	system("cls");
-        	cout<<"Trenutno imamo na raspolaganju "<<izrArtikal(b)<<" artikla razlicitih modela u ponudi"<<endl;
+            cout<<crt;
+        	cout<<"\t\tU vasem skladistu se nalazi "<<izrArtikal(b)<<" razlicitih modela mobitela."<<endl;
+            cout<<crt;
         	system("pause");
         	adminMeni("admin");
 
@@ -973,16 +975,16 @@ void prodajArtikal(){
 };
 //unos username i pasworda za registraciju
 void registracija(string *username,string *pasword,int j){
-	cout<<"Unesite username:";
+	cout<<setw(49)<<"Unesite username:";
     getline(cin,username[j]);
-    cout<<"Unesite pasword:";
+    cout<<setw(48)<<"Unesite pasword:";
     getline(cin,pasword[j]);
 }
 //unos username i pasworda  i smjestanje u niz za login
 void login(string *lusername,string *lpasword,int i){
-	cout<<"Username:";
+	cout<<setw(41)<<"Username:";
     getline(cin,lusername[i]);
-    cout<<"Pasword:";
+    cout<<setw(40)<<"Pasword:";
     getline(cin,lpasword[i]);
 }
 //porede se uneseni pasword i username za login,sa do tad unesenim pasword i username u registracijama te vraca true ako postoji username i pasword u registracijama
@@ -1014,29 +1016,29 @@ bool adm(string *luser,string *lpas,int i,Admin *novi){
 int main (){
     system("Color 1F");
 		std::cout << "\n\n\n\n\t\t  D";
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  O" ;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  B" ;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  R" ;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  O\t";
-		Sleep(300);
+		Sleep(200);
         std::cout << "\t  D";
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  O" ;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  S" ;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  L" ;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  I\n\n"<<endl;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t\t\t\t\t\t\t  U\n\n\n" ;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t\t\t  M" ;
-		Sleep(300);
+		Sleep(200);
 		std::cout << "\t  O" ;
 		Sleep(200);
 		std::cout << "\t  B" ;
@@ -1071,7 +1073,7 @@ int main (){
 do{
 	do{
 		user.loginMeni();
-		cout << "\n\t\t\t\tIzbor: ";
+		cout << "\n\t\t\t\tIzbor: "; 
 		cin >> izbor;
 		cin.ignore();
 		
