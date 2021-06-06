@@ -83,37 +83,7 @@ struct mobitel{
     /*-------------------LOGIN MENU (otvara ga na pocetku programa)-----------------*/
    void loginMeni(){
 //LOGIN MENI
-	system("cls"); 
-	
-	system("Color 1A");
-		std::cout << "\t    Dobrodosli";
-		Sleep(200);
-		system("Color 2B");
-		std::cout << "\t\   Dobrodosli" ;
-		Sleep(200);
-		system("Color 3C");
-		std::cout << "\t    Dobrodosli" ;
-		Sleep(200);
-		system("Color 4D");
-		std::cout << "\t    Dobrodosli" ;
-		Sleep(200);
-		system("Color 5E");
-		std::cout << "\t    Dobrodosli"<<endl;
-		Sleep(200);
-		system("Color 6F");
-		std::cout << "\t    MOBI SHOP" ;
-		Sleep(200);
-		system("Color A1");
-		std::cout << "\t    MOBI SHOP" ;
-		Sleep(200);
-		system("Color B2");
-		std::cout << "\t    MOBI SHOP" ;
-		Sleep(200);
-		system("Color C3");
-		std::cout << "\t    MOBI SHOP";
-		Sleep(200);
-		system("Color F0");
-		std::cout << "\t    MOBI SHOP" ;
+	system("cls");
 		//==========================================================================
 		for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
 		cout << "\t\t\t ";for(int i=1;i<=25;i++){cout << "_";};cout << endl;
@@ -981,7 +951,7 @@ bool adm(string *luser,string *lpas,int i,Admin *novi){
 int main (){
     
     mobitel user;
-	int izbor,a=0,b=0,br=0,o=0,p=0;
+	int izbor,a=0,b=0,br=0,o=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
 	ifstream ob("admini.txt");
@@ -997,10 +967,43 @@ int main (){
 		}
 do{
 	do{
+		if(o==0){
+			system("Color 1A");
+		std::cout << "\t    Dobrodosli";
+		Sleep(200);
+		system("Color 2B");
+		std::cout << "\t\   Dobrodosli" ;
+		Sleep(200);
+		system("Color 3C");
+		std::cout << "\t    Dobrodosli" ;
+		Sleep(200);
+		system("Color 4D");
+		std::cout << "\t    Dobrodosli" ;
+		Sleep(200);
+		system("Color 5E");
+		std::cout << "\t    Dobrodosli"<<endl;
+		Sleep(200);
+		system("Color 6F");
+		std::cout << "\t    MOBI SHOP" ;
+		Sleep(200);
+		system("Color A1");
+		std::cout << "\t    MOBI SHOP" ;
+		Sleep(200);
+		system("Color B2");
+		std::cout << "\t    MOBI SHOP" ;
+		Sleep(200);
+		system("Color C3");
+		std::cout << "\t    MOBI SHOP";
+		Sleep(200);
+		system("Color F0");
+		std::cout << "\t    MOBI SHOP" ;
+		o++;
+}
 		user.loginMeni();
 		cout << "\n\t\t\t\tIzbor: ";
 		cin >> izbor;
 		cin.ignore();
+		
 	switch(izbor){
 		case 1:
 			registracija(username,pasword,a);
