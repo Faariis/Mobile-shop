@@ -405,7 +405,7 @@ cout << "\t\t\t\\________________________/" << endl;
             cout << "\t\t\t| 1. Ispisi sve artikle (sortirano):     |" << endl;
             cout << "\t\t\t| 2. Provjeri mobitel u skladistu:       |" << endl;
             cout << "\t\t\t| 0. Nazad:                              |" << endl;
-            cout << "\t\t\t|________________________________________|\n" << endl
+            cout << "\t\t\t|________________________________________|\n" << endl;
             for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
                 }if(rec=="korisnik"){
                 		for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
@@ -702,7 +702,7 @@ cout << "\t\t\t\\________________________/" << endl;
         }
         for(int i=0; i<telefoni.size(); i++){
             for(int j=i; j<telefoni.size(); j++){
-                if(cijena[i]>cijena[j]) {
+                if(cijena[i]<cijena[j]) {
                     swap(cijena[i], cijena[j]);
                     swap(telefoni[i], telefoni[j]);
                 }
@@ -881,7 +881,7 @@ void prodajArtikal(){
 		do{
         cout<<"Unesite ID mobitela koji zelite kupiti: ";
         cin>>id;
-		}while(id<0|| id>50);
+		}while(id<0|| id>30);
 		narudzba<<id<<" ";
             for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
         cout<<"Odaberite brzu postu: " << endl;
@@ -963,7 +963,7 @@ bool adm(string *luser,string *lpas,int i,Admin *novi){
 /*************************************** MAIN FUNKCIJA *********************************************/
 int main (){
     
-    mobitel user;
+    mobitel user;/*
 	int izbor,a=0,b=0,br=0,o=0;
 	string username[20],pasword[20],lusername[20],lpasword[20];
 		Admin *novi=new Admin[4];
@@ -1042,7 +1042,8 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
-  
-//	user.adminMeni("admin");
+  */
+//	user.korisnickiMenu("korisnik");
+	user.adminMeni("admin");
 return 0;
 }
