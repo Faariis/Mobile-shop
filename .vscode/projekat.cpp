@@ -836,10 +836,18 @@ void prodajArtikal(){
     remove("skladiste.txt");                     //brise skladiste.txt
     rename("temp.txt", "skladiste.txt");        //mijenja naziv temp.txt u skladiste.txt
         system("cls");
-        cout<<"\n\tLoading...";
+        for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+        cout<<"\n\t\t\t\t  Loading...\n" << endl;
+        for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
         Sleep(2000);//ubaceno da bi se program malo zaustavio (loading) prije nego sto se ispise sljedeca poruka
         system("cls");
-    cout<<"\n\tUspjesno ste prodali artikal, brza posta je obavijestena za preuzimanje paketa.\n"<<endl;
+        for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+	cout << "\t      _____________________________________________________" << endl;
+    cout << "\t      |                                                   |" << endl;
+    cout << "\t      |            Artikal je uspjeno prodan!             |" << endl; 
+	cout << "\t      | Brza posta je obavijestena za preuzimanje paketa. |" << endl;
+	cout << "\t      |___________________________________________________|\n" << endl;
+	for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
     system("PAUSE");
     cin.ignore();
     system("cls");
