@@ -400,12 +400,12 @@ cout << "\t\t\t\\________________________/" << endl;
             do{
                 if(rec=="admin"){
                 		for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
-        	cout << "\t\t\t_________________________________________" << endl;
-        	cout << "\t\t\t|                              		    |" << endl;
-            cout << "\t\t\t| 1. Ispisi sve artikle (sortirano): 	|" << endl;
-            cout << "\t\t\t| 2. Provjeri mobitel u skladistu        |" << endl;
-            cout << "\t\t\t| 0. Nazad:                     			|" << endl;
-            cout << "\t\t\t|________________________________________|\n" << endl;
+            cout << "\t\t\t_________________________________________" << endl;
+            cout << "\t\t\t|                                        |" << endl;
+            cout << "\t\t\t| 1. Ispisi sve artikle (sortirano):     |" << endl;
+            cout << "\t\t\t| 2. Provjeri mobitel u skladistu:       |" << endl;
+            cout << "\t\t\t| 0. Nazad:                              |" << endl;
+            cout << "\t\t\t|________________________________________|\n" << endl
             for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
                 }if(rec=="korisnik"){
                 		for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
