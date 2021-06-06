@@ -141,13 +141,14 @@ struct mobitel{
 		cout << "\t\t    | 2. Provjera stanja artikala:     |" << endl;
         cout << "\t\t    | 3. Provjeri narudzbe:            |" << endl;
 		cout << "\t\t    | 4. Prodaj artikal:               |" << endl;
+		cout << "\t\t    | 5. Broj artikala:                |" << endl;
         cout << "\t\t    | 0. Kraj:                         |" << endl;
         cout << "\t\t    |__________________________________|\n" << endl;
         cout<<crt2;
 		cout << "Unesite izbor: ";
 		cin >> izbor;
 		cin.ignore();
-	}while(izbor<0 || izbor>4); 
+	}while(izbor<0 || izbor>5); 
 
     switch(izbor){
         case 1:
@@ -166,8 +167,32 @@ struct mobitel{
         case 0:
         loginMeni();
         break;
+         case 5:
+        	int b=0;
+        	system("cls");
+        	cout<<"Trenutno imamo na raspolaganju "<<izrArtikal(b)<<" artikla razlicitih modela u ponudi"<<endl;
+        	system("pause");
+        	adminMeni("admin");
+
     }
 }
+int izrArtikal(int n){
+ ifstream unos("skladiste.txt");
+            int br1=0;
+            string tenp;
+            if(unos.is_open()){
+            	while(!unos.eof()){
+            		getline(unos,tenp);
+            		br1++;
+				}
+                unos.close();
+			}
+if(n==br1-4){
+					return n;
+				}else{
+					return izrArtikal(n+1);
+				}	
+			}
      /*-------------------FUNKCIJA ZA UNOS MOBITELA U SKLOPU ADMIN MENUA-----------------*/
     void unosMobitela(){
         ifstream some("skladiste.txt");
