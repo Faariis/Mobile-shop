@@ -606,7 +606,7 @@ cout << "\t\t\t\\________________________/" << endl;
         }
         for(int i=0; i<telefoni.size(); i++){
             for(int j=i; j<telefoni.size(); j++){
-                if(ram[i]>ram[j]) {
+                if(ram[i]<ram[j]) {
                     swap(ram[i], ram[j]);
                     swap(telefoni[i], telefoni[j]);
                 }
@@ -654,7 +654,7 @@ cout << "\t\t\t\\________________________/" << endl;
         }
         for(int i=0; i<telefoni.size(); i++){
             for(int j=i; j<telefoni.size(); j++){
-                if(rom[i]>rom[j]) {
+                if(rom[i]<rom[j]) {
                     swap(rom[i], rom[j]);
                     swap(telefoni[i], telefoni[j]);
                 }
@@ -870,10 +870,10 @@ void prodajArtikal(){
         narudzba<<kupac.brTel<<" ";
     }while(kupac.brTel.length()<1);
             for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
-	//	do{
+		do{
         cout<<"Unesite ID mobitela koji zelite kupiti: ";
         cin>>id;
-	//	}while(id<50 || id>50);
+		}while(id<0|| id>50);
 		narudzba<<id<<" ";
             for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
         cout<<"Odaberite brzu postu: " << endl;
@@ -1034,7 +1034,7 @@ do{
 		}
 	}while(izbor != 5);
 	}while(izbor<1 || izbor>5);
-    
-
+  
+//	user.adminMeni("admin");
 return 0;
 }
