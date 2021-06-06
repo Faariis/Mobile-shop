@@ -845,30 +845,35 @@ void prodajArtikal(){
     system("cls");
     provjeriNarudzbe();
 }    
- /*-------------------FUNKCIJA KOJU IZBACUJE KAD KUPAC ODABERE OPCIJU -Kupi artikal- ---------------------*/
+/*-------------------FUNKCIJA KOJU IZBACUJE KAD KUPAC ODABERE OPCIJU -Kupi artikal- ---------------------*/
     void KupiArtikal(){
         int izbor;
         ofstream narudzba("narudzbe.txt", ios::app); //smjesta u posebnu datoteku narudzbe.txt koja je dostupna adminu
         narudzba<<"--------------------------------------------------------\n";
             for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+            do{
         cout<<"Unesite vase ime i prezime: ";
         cin.ignore();
         getline(cin, kupac.imePrezime);
         narudzba<<kupac.imePrezime<<" ";
+        }while(kupac.imePrezime.length()<1);
             for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+            do{
         cout<<"Unesite vasu adresu (npr. Travnicka-16-Zenica): ";
         getline(cin, kupac.adresa);
         narudzba<<kupac.adresa<<" ";
+    }while(kupac.adresa.length()<1);
             for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
+            do{
         cout<<"Unesite broj telefona: ";
         getline(cin, kupac.brTel);
         narudzba<<kupac.brTel<<" ";
+    }while(kupac.brTel.length()<1);
             for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
-      //  do{
-		
+	//	do{
         cout<<"Unesite ID mobitela koji zelite kupiti: ";
         cin>>id;
-	//	}while(id<br)
+	//	}while(id<50 || id>50);
 		narudzba<<id<<" ";
             for(int i=1;i<=80;i++){if(i<80){cout << "-";}else if(i==80){cout << endl;}}
         cout<<"Odaberite brzu postu: " << endl;
