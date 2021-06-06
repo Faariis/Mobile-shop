@@ -27,4 +27,5 @@ ID:   Proizvodjac:  Model:    Godina proizvodnje:  RAM(GB):  ROM(GB):  Kolicina:
 24    Samsung       J5        2017                 8         128       4           215          
 25    iPhone        6         2014                 4         64        12          260          
 26    Samsung       E7        2015                 4         64        9           200          
-27    Huawei        Y9        2018                 6         64        11          400        
+27    Huawei        Y9        2018                 6         64        11          400  
+28    iPhone        15        2021                 8         1024      1           2500         
