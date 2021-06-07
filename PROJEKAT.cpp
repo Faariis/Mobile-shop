@@ -126,16 +126,16 @@ struct mobitel{
   void adminMeni(string rec){	  
     system("cls");
 	//===================================================================================================================
-	for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+	cout<<crt2;
 	cout << "\t\t\t  _______________________" << endl;
 	cout << "\t\t\t  |                     |" << endl;
 	cout << "\t\t\t  | Dobrodosao, admine! |" << endl; 
 	cout << "\t\t\t  |_____________________|\n" << endl;
-	for(int i=1;i<=80;i++){if(i<80){cout << "=";}else if(i==80){cout << endl;}}
+	cout<<crt2;
 	//===================================================================================================================
 	int izbor;
 	do{
-		cout << "\n\t\t    ____________________________________" << endl;
+		cout << "\n\t\t  ____________________________________" << endl;
 		cout << "\t\t    |                                  |" << endl;
 		cout << "\t\t    | 1. Dodati novi artikal(mobitel): |" << endl;
 		cout << "\t\t    | 2. Provjera stanja artikala:     |" << endl;
@@ -178,6 +178,7 @@ struct mobitel{
 
     }
 }
+//Rekurzivnom funkcijom racunamo ukupan broj mobitela u skladistu
 int izrArtikal(int n){
  ifstream unos("skladiste.txt");
             int br1=0;
@@ -189,7 +190,7 @@ int izrArtikal(int n){
 				}
                 unos.close();
 			}
-if(n==br1-4){
+                if(n==br1-4){
 					return n;
 				}else{
 					return izrArtikal(n+1);
@@ -400,7 +401,7 @@ if(n==br1-4){
 
             }
             cout<<"\n------------------------------------------------------";
-            cout<<"\n\tUkupan broj narudzbi: "<<br-1<<endl; //zbog jedne prazne linije stavljami br-1
+            cout<<"\n\tUkupan broj narudzbi: "<<br<<endl; 
             cout<<"------------------------------------------------------\n\n";
 
             cout<<"1. Prodaj artikal: "<<endl;
@@ -988,7 +989,6 @@ void login(string *lusername,string *lpasword,int i){
     getline(cin,lpasword[i]);
 }
 //porede se uneseni pasword i username za login,sa do tad unesenim pasword i username u registracijama te vraca true ako postoji username i pasword u registracijama
-//p nam je potrebno samo za ispis odnosno pristup unesenom username ii pasword
 bool reg(string *regU,string *regP,string *luser,string *lpas,int i,int j){
 	int k=0;
 	for(int n=0;n<j;n++){
@@ -1001,7 +1001,6 @@ bool reg(string *regU,string *regP,string *luser,string *lpas,int i,int j){
 }
 
 //porede se uneseni pasword i username za login,sa paswordima i username u datoteci admini.txt u kojoj smo smjestili ove varijable,te vraca true ako postoji username i pasword u datoteci admini.txt
-//p nam je potrebno samo za ispis odnosno pristup unesenom username ii pasword loginovanog admina
 bool adm(string *luser,string *lpas,int i,Admin *novi){
 	int k=0;
 	for(int n=0;n<4;n++){
@@ -1095,6 +1094,7 @@ do{
 			}else{
 				cout<<"Pogresan username ili password \n";
 				system("pause");
+                break;
 			}
 		case 0:
                 system("cls");
@@ -1102,6 +1102,8 @@ do{
 		}
 	}while(izbor != 0);
 	}while(izbor<1 || izbor>3);
+
+delete [] novi;
    
 return 0;
 }
