@@ -30,3 +30,4 @@ ID:   Proizvodjac:  Model:    Godina proizvodnje:  RAM(GB):  ROM(GB):  Kolicina:
 27    Huawei        Y9        2018                 6         64        11          400  
 28    iPhone        15        2021                 8         1024      1           2500         
 29    Samsung       S2        2010                 4         8         45          45           
+30    Samsung       s1        2011                 2         16        2           200          
