@@ -165,6 +165,7 @@ struct mobitel{
         IspisMobitela();
         prodajArtikal();
         case 0:
+        system("cls");
         loginMeni();
         break;
          case 5:
